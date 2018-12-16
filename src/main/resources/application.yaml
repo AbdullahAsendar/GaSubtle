@@ -1,0 +1,7 @@
+spring:
+    jmx: 
+        enabled: false
+        
+javafx:
+    title: HOM - GA
+    appicons: /ui/images/icon3.png

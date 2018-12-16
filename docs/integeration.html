@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HOM-GA: API</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="icon.png">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
+        crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+
+<body class="body-primary">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span class="text-bold">HOM-GA </span><span class="text-highlight">API</span>
+                        </a>
+                    </h1>
+                </div>
+                <!--//branding-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">API</li>
+                </ol>
+            </div>
+            <!--//container-->
+        </header>
+        <!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section class="doc-section">
+                                <h2 class="section-title">HOM-GA API</h2>
+                                <div class="section-block">
+                                    <p>
+                                        HOM-GA consists of three layers:
+                                        <ul class="list list-unstyled">
+                                            <li><i class="fas fa-arrow-right"></i> The API</li>
+                                            <li><i class="fas fa-arrow-right"></i> Graphical user interface</li>
+                                            <li><i class="fas fa-arrow-right"></i> Command line interface</li>
+                                        </ul>
+
+                                        To integerate your application you can use the API layer. It is the exact same of what the GUI and CMD layers do.
+
+                                    </p>
+
+
+                                </div>
+                            </section>
+                            <!--//doc-section-->
+                            <section class="doc-section">
+                                <h2 class="section-title">Usage</h2>
+                                <div class="section-block">
+                                    <p>
+                                        
+
+                                    </p>
+
+
+                                    <div class="code-block">
+                                        <h6>Code Example</h6>
+                                        <pre><code class="language-scss">
+        // create a config object that defines settings and termination conditions for the algorithm
+        Config config = Config
+        				.builder()
+        				.classPath("/path/to/junit-4/and/hamcrest")
+        				.maxOrder(5) // the algorithm will not generate HOMs higher than this order
+        				.maxGeneration(100) // the algorithm will terminate when it reaches this generation
+        				.maxHoms(1000) // the algorithm will terminate when it reaches this number of HOMs
+                        .requiredSubtleHoms(1000) // the algorithm will terminate 
+                                                  //when it reaches this number of subtle HOMs
+        				.timeout(500) // tineout seconds
+        				.mutationPercentage(5) // this number will be used for selection
+        				.originalFile(/path/to/original/.java/file)
+        				.populationSize(100) // the population will not exceed this number
+        				.resultPath("/path/to/export/results/to")
+        				.runRepeat(2) // how many times should the algorithm run
+        				.testCasesPath("/path/to/test/cases")
+        				.build();
+        		
+        		GeneticAlgorithm geneticAlgorithm = GeneticAlgorithm
+        		.builder() // create new instance
+        		.config(config) // set the config
+                .selectionStrategy(new RouletteWheelSelection()) // selection strategy [you can create your 
+                                                                 //own by implementing SelectionStrategy]
+                .evaluation(new Evaluation()) // evaluation strategy [you can create your own by implementing 
+                                              //AbstractOperation]
+        		.operation(new Crossover()) // operations, also impelements AbstractOperation
+        		.operation(new Mutation())
+        		.messageListener(messageListener) // message listener
+        		.geneticAlgorithmListener(gaListener) // GA listener
+        		.build();
+                                        </code></pre>
+                                    </div>
+                                    <!--//code-block-->
+
+
+                            </section>
+
+
+                            <!--//doc-section-->
+                            </div>
+                            <!--//content-inner-->
+                        </div>
+                        <!--//doc-content-->
+
+                    </div>
+                    <!--//doc-sidebar-->
+                </div>
+                <!--//doc-body-->
+            </div>
+            <!--//container-->
+        </div>
+        <!--//doc-wrapper-->
+
+
+
+    </div>
+    <!--//page-wrapper-->
+
+    <footer class="footer text-center">
+
+        </footer>
+    <!--//footer-->
+
+
+    <!-- Main Javascript -->
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
+</body>
+
+</html>
