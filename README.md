@@ -1,6 +1,6 @@
-# HOM GA - Generate Subtle Higher Order Mutants
+# GaSubtle - Generate Subtle Higher Order Mutants
 
-HOM GA is based on Java that uses genatic algorithm to generate subtle higher order mutants. For more details check our [website](https://abdullahasendar.github.io/HOM-GA/).
+GaSubtle is based on Java that uses genatic algorithm to generate subtle higher order mutants. For more details check our [website](https://abdullahasendar.github.io/GaSubtle/).
 
 ## Prerequisite
 
@@ -8,7 +8,7 @@ HOM GA is based on Java that uses genatic algorithm to generate subtle higher or
 You will need a PC with a minimum of Core-i5 CPU and a 4 GBs of RAM.
 
 ### Java SE Development Kit 8
-HOM-GA is based on Java 8, so in order to run, compile and build the tool Java SE Development Kit 8 is required.
+GaSubtle is based on Java 8, so in order to run, compile and build the tool Java SE Development Kit 8 is required.
 
 ### IDE
 To edit the code you will need a Java IDE (ex. Eclipse, NetBeans).
@@ -60,7 +60,7 @@ Download Project Lombok and run the downloaded file. It will ask you to locate y
 You can build the project by executing `mvn clean install`
 
 ## Launch
-You can run the tool by executing `java -jar HOM-GA-x.x.x-SNAPSHOT.jar`
+You can run the tool by executing `java -jar GaSubtle-x.x.x-SNAPSHOT.jar`
 
 ## License
 GNU General Public License v3.0

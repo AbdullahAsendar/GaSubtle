@@ -40,7 +40,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ArgCommand {
 
-	HOME("h", "home", "specify the home\ndefault: [${current.path}/hom-ga-home]", false), 
+	HOME("h", "home", "specify the home\ndefault: [${current.path}/GaSubtle-home]", false), 
 	BENCHMARK("b", "benchmark", "specify benchmark name, directory path should be [${home}/${benchmark}]", true), 
 	SELECTION_STRATEGY("s", "selection-strategy", String.format("set selection strategy\nvalues: [%s]\ndefault: use all the selection stratiges", Lists.newArrayList(Selection.values())), false);
 	

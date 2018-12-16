@@ -71,7 +71,7 @@ public class CommandHandler {
 		try {
 			cmd = parser.parse(options, args);
 		} catch (Exception e) {
-			formatter.printHelp("HOM-GA", options);
+			formatter.printHelp("GaSubtle", options);
 
 			System.exit(1);
 		}

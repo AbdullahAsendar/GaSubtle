@@ -32,7 +32,7 @@ public interface Constants {
 	
 	String RUN_ID = IDUtils.newID();
 
-	String DEFAULT_HOME = System.getProperty("user.dir") + File.separator + "hom-ga-home";
+	String DEFAULT_HOME = System.getProperty("user.dir") + File.separator + "GaSubtle-home";
 
 	String APP_CONFIG_FILE = "app_config.properties";
 
