@@ -28,33 +28,47 @@ Download Project Lombok and run the downloaded file. It will ask you to locate y
 
 
 
-            // create a config object that defines settings and termination conditions for the algorithm
-            Config config = Config
-            				.builder()
-            				.classPath("/path/to/junit-4/and/hamcrest")
-            				.maxOrder(5) // the algorithm will not generate HOMs higher than this order
-            				.maxGeneration(100) // the algorithm will terminate when it reaches this generation
-            				.maxHoms(1000) // the algorithm will terminate when it reaches this number of HOMs
-            				.requiredSubtleHoms(1000) // the algorithm will terminate when it reaches this number of subtle HOMs
-            				.timeout(500) // tineout seconds
-            				.mutationPercentage(5) // this number will be used for selection, ex (if the generation size is 100 and the mutation percentage is 5 the algorithm will use 5 mutants for operations)
-            				.originalFile(/path/to/original/.java/file)
-            				.populationSize(100) // the population will not exceed this number
-            				.resultPath("/path/to/export/results/to")
-            				.runRepeat(2) // how many times should the algorithm run
-            				.testCasesPath("/path/to/test/cases")
-            				.build();
-            		
-            		GeneticAlgorithm geneticAlgorithm = GeneticAlgorithm
-            		.builder() // create new instance
-            		.config(config) // set the config
-            		.selectionStrategy(new RouletteWheelSelection()) // selection strategy [you can create your own by implementing SelectionStrategy]
-            		.evaluation(new Evaluation()) // evaluation strategy [you can create your own by implementing AbstractOperation]
-            		.operation(new Crossover()) // operations, also impelements AbstractOperation
-            		.operation(new Mutation())
-            		.messageListener(messageListener) // message listener
-            		.geneticAlgorithmListener(gaListener) // GA listener
-            		.build();
+		GeneticAlgorithm
+		.builder()
+		.mutationPercentage(10) \\ the mutation percentage
+		.maxOrder(5) \\ max order of the HOMs not to be exceeded
+		.runRepeat(1) \\ how many time to run the algorithm [for benchmarking]
+            \\ stopping conditions, at least one should be provided
+		.requiredSubtleHoms(1000) \\ stopping condition: minimum subtle HOMs needed
+		.maxHoms(1500) \\ stopping condition: maximum HOMs to generate
+		.maxGeneration(300) \\ stopping condition: maximum generation to reach
+		.timeout(1000) \\ stopping condition: timeout in seconds
+		.originalFile("/some/.java/file") \\ path to the original file
+		.testCasesPath("/some/.class/test/path") \\ path to test cases
+		.resultPath("/some/path") \\ path to store the results in
+		.mutantsPath("/some/path") \\ path to store the mutants in
+		.evaluation(new EvaluationDefaultImpl())
+		.evaluation(new EvaluationDefaultImpl())
+		.crossover(new CrossoverDefaultImpl())
+		.mutation(new MutationDefaultImpl())
+		.selection(selection)
+		.messageListener(new MessageListener() {
+			
+			@Override
+			public void info(String value) {
+       System.out.println("Info message from the GA is: "+ value);
+			}
+			
+			@Override
+			public void error(String value) {
+							 System.out.println("There was an error:" + value);
+			}
+			
+			@Override
+			public void debug(String value) {
+				    System.out.println("Debugging: "+ value);
+			}
+		})
+		.geneticAlgorithmListener((int generation, int populationSize, int liveMutants, int subtleMutants)
+				-> LOG.info(String.format("Generation [%s] Population [%s] Live Mutants [%s] Subtle Mutants [%s]",
+						generation, populationSize, liveMutants, subtleMutants)))
+				.build()
+		.run();
 
 ## Build
 You can build the project by executing `mvn clean install`
