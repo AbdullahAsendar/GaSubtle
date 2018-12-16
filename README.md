@@ -51,17 +51,17 @@ Download Project Lombok and run the downloaded file. It will ask you to locate y
 			
 			@Override
 			public void info(String value) {
-       System.out.println("Info message from the GA is: "+ value);
+                            System.out.println("Info message from the GA is: "+ value);
 			}
 			
 			@Override
 			public void error(String value) {
-							 System.out.println("There was an error:" + value);
+			    System.out.println("There was an error:" + value);
 			}
 			
 			@Override
 			public void debug(String value) {
-				    System.out.println("Debugging: "+ value);
+			    System.out.println("Debugging: "+ value);
 			}
 		})
 		.geneticAlgorithmListener((int generation, int populationSize, int liveMutants, int subtleMutants)
