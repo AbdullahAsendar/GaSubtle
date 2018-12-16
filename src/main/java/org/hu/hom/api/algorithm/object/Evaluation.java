@@ -20,21 +20,21 @@ package org.hu.hom.api.algorithm.object;
 import java.util.List;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.impl.Mutation;
+import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 
 /**
  * <p>
- * Mutation that can be passed to the {@link GeneticAlgorithm} to be executed on each generation.
+ * Evaluation that can be passed to the {@link GeneticAlgorithm} to be executed on each generation.
  * 
  * @author Asendar
  * 
  * @param <T> The type of {@link Population} to execute the operation on.
  * 
- * @see Mutation
+ * @see EvaluationDefaultImpl
  *
  */
-public interface AbstractMutation<T extends AbstractMutant> {
-	List<T> mutate(List<T> mutants);
+public interface Evaluation<T extends AbstractMutant> {
+	List<T> evaluate(List<T> mutants);
 }

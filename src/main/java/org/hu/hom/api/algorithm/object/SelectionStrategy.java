@@ -34,7 +34,7 @@ import org.hu.hom.core.object.Population;
  * @author Asendar
  * 
  */
-public interface AbstractSelectionStrategy<T extends AbstractMutant> {
+public interface SelectionStrategy<T extends AbstractMutant> {
     /**
      * <p>Select the specified number of candidates from the population.
      * Implementations may assume that the population is sorted in descending

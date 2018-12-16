@@ -27,7 +27,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.lang3.StringUtils;
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
 import org.hu.hom.api.config.Config;
 import org.hu.hom.core.object.HigherOrderMutant;
@@ -48,7 +48,7 @@ import lombok.Getter;
  */
 public class CommandHandler {
 	
-	private static @Getter AbstractSelectionStrategy<HigherOrderMutant> selectionStrategy;
+	private static @Getter SelectionStrategy<HigherOrderMutant> selectionStrategy;
 
 	/**
 	 * @param args of the cmd

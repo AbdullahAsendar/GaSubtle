@@ -23,9 +23,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.impl.Crossover;
-import org.hu.hom.api.algorithm.object.impl.Evaluation;
-import org.hu.hom.api.algorithm.object.impl.Mutation;
+import org.hu.hom.api.algorithm.object.impl.CrossoverDefaultImpl;
+import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
+import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.config.Config;
 import org.hu.hom.api.listener.GeneticAlgorithmListener;
 import org.hu.hom.api.listener.MessageListener;
@@ -109,9 +109,9 @@ public class GaMonitorController implements Initializable {
 				GeneticAlgorithm
 				.builder()
 				.config(config)
-				.evaluation(new Evaluation())
-				.crossover(new Crossover())
-				.mutation(new Mutation())
+				.evaluation(new EvaluationDefaultImpl())
+				.crossover(new CrossoverDefaultImpl())
+				.mutation(new MutationDefaultImpl())
 				.selection(GaConfig.getSelectionStrategy())
 				.messageListener(messageListener)
 				.geneticAlgorithmListener(gaListener)

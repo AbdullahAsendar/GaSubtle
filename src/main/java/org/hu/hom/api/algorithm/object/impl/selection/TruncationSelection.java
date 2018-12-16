@@ -20,7 +20,7 @@ package org.hu.hom.api.algorithm.object.impl.selection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.core.object.HigherOrderMutant;
 import org.hu.hom.core.object.Population;
 
@@ -36,7 +36,7 @@ import org.hu.hom.core.object.Population;
  * @author Asendar
  *
  */
-public class TruncationSelection implements AbstractSelectionStrategy<HigherOrderMutant>{
+public class TruncationSelection implements SelectionStrategy<HigherOrderMutant>{
 
 
 	@Override

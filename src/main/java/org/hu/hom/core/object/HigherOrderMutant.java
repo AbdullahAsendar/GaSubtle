@@ -75,7 +75,7 @@ public class HigherOrderMutant extends AbstractMutant{
 	 */
 	private final Set<FirstOrderMutant> first_order_mutants = new HashSet<>();
 	/**
-	 * The fitness of the {@link HigherOrderMutant} calculated using {@link Evaluation#setFitness(HigherOrderMutant)}
+	 * The fitness of the {@link HigherOrderMutant} calculated using {@link EvaluationDefaultImpl#setFitness(HigherOrderMutant)}
 	 */
 	private @Setter @Getter double fitness;
 

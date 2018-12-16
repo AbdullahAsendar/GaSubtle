@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.AbstractMutation;
+import org.hu.hom.api.algorithm.object.Mutation;
 import org.hu.hom.core.mutation.MutationModel;
 import org.hu.hom.core.object.FirstOrderMutant;
 import org.hu.hom.core.object.HigherOrderMutant;
@@ -41,7 +41,7 @@ import com.google.common.collect.Lists;
  * 
  *
  */
-public class Mutation implements AbstractMutation<HigherOrderMutant> {
+public class MutationDefaultImpl implements Mutation<HigherOrderMutant> {
 
 	/**
 	 * 

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.AbstractCrossover;
+import org.hu.hom.api.algorithm.object.Crossover;
 import org.hu.hom.core.object.FirstOrderMutant;
 import org.hu.hom.core.object.HigherOrderMutant;
 
@@ -68,7 +68,7 @@ import com.google.common.collect.Lists;
  * @author Asendar
  *
  */
-public class ExperimentalCrossover implements AbstractCrossover<HigherOrderMutant> {
+public class CrossoverExperimentalImpl implements Crossover<HigherOrderMutant> {
 
 	@Override
 	public List<HigherOrderMutant> crossover(HigherOrderMutant firstMutant, HigherOrderMutant secondMutant) {

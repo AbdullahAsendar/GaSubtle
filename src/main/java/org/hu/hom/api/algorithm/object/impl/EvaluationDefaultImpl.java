@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.AbstractEvaluation;
+import org.hu.hom.api.algorithm.object.Evaluation;
 import org.hu.hom.core.object.FirstOrderMutant;
 import org.hu.hom.core.object.HigherOrderMutant;
 import org.hu.hom.core.utils.ListUtils;
@@ -37,7 +37,7 @@ import com.google.common.collect.Sets;
  * @author Asendar
  *
  */
-public class Evaluation implements AbstractEvaluation<HigherOrderMutant> {
+public class EvaluationDefaultImpl implements Evaluation<HigherOrderMutant> {
 	
 	@Override
 	public List<HigherOrderMutant> evaluate(List<HigherOrderMutant> mutants) {

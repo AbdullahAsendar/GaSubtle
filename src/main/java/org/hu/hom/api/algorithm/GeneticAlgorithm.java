@@ -24,13 +24,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import org.hu.hom.api.algorithm.object.AbstractCrossover;
-import org.hu.hom.api.algorithm.object.AbstractEvaluation;
-import org.hu.hom.api.algorithm.object.AbstractMutation;
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
-import org.hu.hom.api.algorithm.object.impl.Crossover;
-import org.hu.hom.api.algorithm.object.impl.Evaluation;
-import org.hu.hom.api.algorithm.object.impl.Mutation;
+import org.hu.hom.api.algorithm.object.Crossover;
+import org.hu.hom.api.algorithm.object.Evaluation;
+import org.hu.hom.api.algorithm.object.Mutation;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
+import org.hu.hom.api.algorithm.object.impl.CrossoverDefaultImpl;
+import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
+import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
 import org.hu.hom.api.algorithm.report.ReportEngine;
 import org.hu.hom.api.config.Config;
@@ -72,9 +72,9 @@ import lombok.Singular;
  * 
  * @author Asendar
  *
- * @see Crossover
- * @see Mutation
- * @see Evaluation
+ * @see CrossoverDefaultImpl
+ * @see MutationDefaultImpl
+ * @see EvaluationDefaultImpl
  * @see Selection
  */
 @Builder
@@ -90,10 +90,10 @@ public class GeneticAlgorithm  {
 	private Config config;
 	private File outputDir;
 
-	private AbstractEvaluation<HigherOrderMutant> evaluation;
-	private AbstractCrossover<HigherOrderMutant> crossover;
-	private AbstractMutation<HigherOrderMutant> mutation;
-	private AbstractSelectionStrategy<HigherOrderMutant> selection;
+	private Evaluation<HigherOrderMutant> evaluation;
+	private Crossover<HigherOrderMutant> crossover;
+	private Mutation<HigherOrderMutant> mutation;
+	private SelectionStrategy<HigherOrderMutant> selection;
 
 	private @Singular Set<GeneticAlgorithmListener> geneticAlgorithmListeners;
 	private @Singular Set<MessageListener> messageListeners;

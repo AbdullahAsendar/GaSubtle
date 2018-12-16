@@ -24,10 +24,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
-import org.hu.hom.api.algorithm.object.impl.Crossover;
-import org.hu.hom.api.algorithm.object.impl.Evaluation;
-import org.hu.hom.api.algorithm.object.impl.Mutation;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
+import org.hu.hom.api.algorithm.object.impl.CrossoverDefaultImpl;
+import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
+import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
 import org.hu.hom.api.config.Config;
 import org.hu.hom.api.listener.MessageListener;
@@ -76,15 +76,15 @@ public class CmdLauncher {
 	 * <p>
 	 * Starts the {@link GeneticAlgorithm}
 	 */
-	private static void startGeneticAlgorithm(Config config, AbstractSelectionStrategy<HigherOrderMutant> selection) {
+	private static void startGeneticAlgorithm(Config config, SelectionStrategy<HigherOrderMutant> selection) {
 		
 		GeneticAlgorithm
 		.builder()
 		.config(config)
-		.evaluation(new Evaluation())
-		.evaluation(new Evaluation())
-		.crossover(new Crossover())
-		.mutation(new Mutation())
+		.evaluation(new EvaluationDefaultImpl())
+		.evaluation(new EvaluationDefaultImpl())
+		.crossover(new CrossoverDefaultImpl())
+		.mutation(new MutationDefaultImpl())
 		.selection(selection)
 		.messageListener(new MessageListener() {
 			

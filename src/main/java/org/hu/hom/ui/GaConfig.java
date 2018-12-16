@@ -17,7 +17,7 @@
  */
 package org.hu.hom.ui;
 
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.core.object.HigherOrderMutant;
 
 import lombok.AccessLevel;
@@ -57,5 +57,5 @@ public class GaConfig {
 	private @Setter @Getter static String testCasesPath;
 	private @Setter @Getter static String resultPath;
 	
-	private @Setter @Getter static AbstractSelectionStrategy<HigherOrderMutant> selectionStrategy;
+	private @Setter @Getter static SelectionStrategy<HigherOrderMutant> selectionStrategy;
 }

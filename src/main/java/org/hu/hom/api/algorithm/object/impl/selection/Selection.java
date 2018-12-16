@@ -17,7 +17,7 @@
  */
 package org.hu.hom.api.algorithm.object.impl.selection;
 
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.core.object.HigherOrderMutant;
 
 import lombok.AllArgsConstructor;
@@ -37,5 +37,5 @@ public enum Selection {
 	TOURNAMENT(new TournamentSelection()), 
 	TRUNCATION(new TruncationSelection());
 
-	private @Getter AbstractSelectionStrategy<HigherOrderMutant> selectionStrategy;
+	private @Getter SelectionStrategy<HigherOrderMutant> selectionStrategy;
 }

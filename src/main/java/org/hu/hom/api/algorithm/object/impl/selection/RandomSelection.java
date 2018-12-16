@@ -20,7 +20,7 @@ package org.hu.hom.api.algorithm.object.impl.selection;
 import java.util.List;
 import java.util.Random;
 
-import org.hu.hom.api.algorithm.object.AbstractSelectionStrategy;
+import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.core.object.HigherOrderMutant;
 import org.hu.hom.core.object.Population;
 
@@ -34,7 +34,7 @@ import com.google.common.collect.Lists;
  * @author Asendar
  *
  */
-public class RandomSelection implements AbstractSelectionStrategy<HigherOrderMutant>{
+public class RandomSelection implements SelectionStrategy<HigherOrderMutant>{
 
 	private static final Random random = new Random();
 

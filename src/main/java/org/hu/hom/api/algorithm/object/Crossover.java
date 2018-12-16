@@ -20,21 +20,43 @@ package org.hu.hom.api.algorithm.object;
 import java.util.List;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.algorithm.object.impl.Evaluation;
+import org.hu.hom.api.algorithm.object.impl.CrossoverDefaultImpl;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 
+import com.google.common.collect.Lists;
+
 /**
  * <p>
- * Evaluation that can be passed to the {@link GeneticAlgorithm} to be executed on each generation.
+ * Crossover that can be passed to the {@link GeneticAlgorithm} to be executed on each generation.
  * 
  * @author Asendar
  * 
  * @param <T> The type of {@link Population} to execute the operation on.
  * 
- * @see Evaluation
+ * @see CrossoverDefaultImpl
  *
  */
-public interface AbstractEvaluation<T extends AbstractMutant> {
-	List<T> evaluate(List<T> mutants);
+public interface Crossover<T extends AbstractMutant> {
+
+	default List<T> excute(List<T> mutants) {
+
+		List<T> newMutants = Lists.newArrayList();
+
+		for (int index = 0; index < mutants.size(); index += 2) {
+
+			if (mutants.size() < index + 2)
+				break;
+
+			T chr_1 = mutants.get(index);
+			T chr_2 = mutants.get(index + 1);
+
+			newMutants.addAll(crossover(chr_1, chr_2));
+
+		}
+
+		return newMutants;
+	}
+
+	List<T> crossover(T firstMutant, T secondMutant);
 }
