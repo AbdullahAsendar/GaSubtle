@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
 import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
-import org.hu.hom.api.config.Config;
+import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.HigherOrderMutant;
 import org.hu.hom.core.utils.PropertiesUtils;
 

@@ -19,7 +19,7 @@ package org.hu.hom.core.test;
 
 import java.io.File;
 
-import org.hu.hom.api.config.Config;
+import org.hu.hom.core.config.Config;
 
 /**
  * <p>

@@ -29,8 +29,8 @@ import java.util.stream.IntStream;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
 import org.hu.hom.api.algorithm.Specifications;
-import org.hu.hom.api.config.Config;
 import org.hu.hom.api.listener.MessageListener;
+import org.hu.hom.core.config.Config;
 import org.hu.hom.core.exception.HomException;
 import org.hu.hom.core.object.FirstOrderMutant;
 import org.hu.hom.core.object.HigherOrderMutant;

@@ -28,9 +28,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.config.Config;
-import org.hu.hom.api.config.Constants;
 import org.hu.hom.api.listener.MessageListener;
+import org.hu.hom.core.config.Config;
+import org.hu.hom.core.config.Constants;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 import org.hu.hom.core.utils.CmdUtils;

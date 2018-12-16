@@ -22,8 +22,8 @@ import java.util.Set;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.api.config.Config;
 import org.hu.hom.api.listener.MessageListener;
+import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 

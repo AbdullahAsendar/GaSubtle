@@ -29,8 +29,8 @@ import org.hu.hom.api.algorithm.object.impl.CrossoverDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
-import org.hu.hom.api.config.Config;
 import org.hu.hom.api.listener.MessageListener;
+import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.HigherOrderMutant;
 
 import com.google.common.collect.Lists;

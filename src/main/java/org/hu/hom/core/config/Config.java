@@ -15,7 +15,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  * 
  */
-package org.hu.hom.api.config;
+package org.hu.hom.core.config;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
 import org.hu.hom.core.exception.HomException;

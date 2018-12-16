@@ -17,7 +17,7 @@
  */
 package org.hu.hom.api.algorithm;
 
-import org.hu.hom.api.config.Config;
+import org.hu.hom.core.config.Config;
 
 /**
  * 
