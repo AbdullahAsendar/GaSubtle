@@ -28,8 +28,8 @@ import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.listener.GeneticAlgorithmListener;
 import org.hu.hom.api.listener.MessageListener;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.ui.GaConfig;
+import org.hu.hom.ui.graphical.model.constants.SharedConfig;
 import org.hu.hom.ui.graphical.model.log.Log;
 import org.hu.hom.ui.graphical.model.log.Logger;
 import org.hu.hom.ui.graphical.view.LogViewer;
@@ -50,7 +50,7 @@ public class GaMonitorController implements Initializable {
 	private @FXML Label lblGeneration, lblPopulation, lblLiveMutants, lblLSubtleMutants;
 
 	private @FXML LogViewer logViewer;
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -90,29 +90,27 @@ public class GaMonitorController implements Initializable {
 					lblLiveMutants.setText(String.valueOf(liveMutants));
 					lblLSubtleMutants.setText(String.valueOf(subtleMutants));
 				});
-
-		Config config = Config
-				.builder()
-				.maxOrder(GaConfig.getMaxOrder())
-				.maxGeneration(GaConfig.getMaxGeneration())
-				.maxHoms(GaConfig.getMaxHoms())
-				.mutationPercentage(GaConfig.getMutationPercentage())
-				.originalFile(GaConfig.getOriginalFile())
-				.requiredSubtleHoms(GaConfig.getRequiredSubtleHoms())
-				.resultPath(GaConfig.getResultPath())
-				.runRepeat(GaConfig.getRunRepeat())
-				.testCasesPath(GaConfig.getTestCasesPath())
-				.timeout(GaConfig.getTimeout())
-				.build();
+				
+				
+		GaConfig config = SharedConfig.getGaConfig();
 		
 		GeneticAlgorithm geneticAlgorithm = 
 				GeneticAlgorithm
 				.builder()
-				.config(config)
+				.maxOrder(config.getMaxOrder())
+				.maxGeneration(config.getMaxGeneration())
+				.maxHoms(config.getMaxHoms())
+				.mutationPercentage(config.getMutationPercentage())
+				.originalFile(config.getOriginalFile())
+				.requiredSubtleHoms(config.getRequiredSubtleHoms())
+				.resultPath(config.getResultPath())
+				.runRepeat(config.getRunRepeat())
+				.testCasesPath(config.getTestCasesPath())
+				.timeout(config.getTimeout())
 				.evaluation(new EvaluationDefaultImpl())
 				.crossover(new CrossoverDefaultImpl())
 				.mutation(new MutationDefaultImpl())
-				.selection(GaConfig.getSelectionStrategy())
+				.selection(config.getSelectionStrategy())
 				.messageListener(messageListener)
 				.geneticAlgorithmListener(gaListener)
 				.build();

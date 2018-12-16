@@ -27,10 +27,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.hu.hom.api.algorithm.GeneticAlgorithm;
+import org.hu.hom.api.config.Constants;
 import org.hu.hom.api.listener.MessageListener;
-import org.hu.hom.core.config.Config;
-import org.hu.hom.core.config.Constants;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 import org.hu.hom.core.utils.CmdUtils;
@@ -48,7 +46,7 @@ import com.google.common.collect.Lists;
  * <p>
  * The execution is done by saving the compiled code of {@link AbstractMutant} 
  * to {@link Constants#TMP} and then executing a OS dependent command to execute
- * provided test suite with {@link Config}.
+ * provided test suite.
  * 
  * <p>
  * As Windows, Linux and MacOs commands vary, this class should be extended to implement
@@ -72,11 +70,11 @@ public abstract class AbstractTestRunner {
 	
 
 	/**
-	 * @param config of the {@link GeneticAlgorithm}
-	 * @return list of test cases located at {@link Config#getTestCasesPath()}
+	 * @param testCasesPath location of test cases
+	 * @return list of test cases
 	 */
-	private List<String> getTestSuites(Config config) {
-		Collection<File> testSuites = FileUtils.listFiles(new File(config.getTestCasesPath()), new String[] { "class" },
+	private List<String> getTestSuites(String testCasesPath) {
+		Collection<File> testSuites = FileUtils.listFiles(new File(testCasesPath), new String[] { "class" },
 				true);
 
 		List<String> testSet = Lists.newArrayList();
@@ -87,34 +85,36 @@ public abstract class AbstractTestRunner {
 	}
 	
 	/**
-	 * @param population to be executed against test suites got from {@link AbstractTestRunner#getTestSuites(Config)}
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param population to be executed against test suites got from {@link AbstractTestRunner#getTestSuites(String)}
+	 * @param originalFile file underExecution
+	 * @param testCasesPath path to test cases
 	 * @param messageListeners for logging
 	 * 
 	 * @param <T> The type of {@link Population}.
 	 */
-	public final <T extends AbstractMutant> void execute(Population<T> population, Config config, Set<MessageListener> messageListeners) {
-		execute(population.getMutants(), config, messageListeners);
+	public final <T extends AbstractMutant> void execute(Population<T> population, String originalFile, String testCasesPath, Set<MessageListener> messageListeners) {
+		execute(population.getMutants(), originalFile, testCasesPath, messageListeners);
 	}
 	
 	/**
-	 * @param mutants to be executed against test suites got from {@link AbstractTestRunner#getTestSuites(Config)}
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param mutants to be executed against test suites got from {@link AbstractTestRunner#getTestSuites(String)}
+	 * @param originalFile file underExecution
+	 * @param testCasesPath path to test cases
 	 * @param messageListeners for logging
 	 * @param <T> The type of {@link Population}.
 	 */
-	public synchronized final <T extends AbstractMutant> void execute(List<T> mutants, Config config, Set<MessageListener> messageListeners) {
+	public synchronized final <T extends AbstractMutant> void execute(List<T> mutants, String originalFile, String testCasesPath, Set<MessageListener> messageListeners) {
 				
 		messageListeners.forEach(listener -> listener.info("Executing Tests"));
 		
-		FileUtils.mkdirs(Config.JUNIT);
-		FileUtils.copyResourceToFile("/jar-files/hamcrest.jar", Config.JUNIT + "/hamcrest.jar");
-		FileUtils.copyResourceToFile("/jar-files/junit.jar", Config.JUNIT + "/junit.jar");
+		FileUtils.mkdirs(Constants.JUNIT);
+		FileUtils.copyResourceToFile("/jar-files/hamcrest.jar", Constants.JUNIT + "/hamcrest.jar");
+		FileUtils.copyResourceToFile("/jar-files/junit.jar", Constants.JUNIT + "/junit.jar");
 		
 				
 		for(AbstractMutant mutant : mutants) {
 			try {
-				excute(mutant, config);
+				excute(mutant, originalFile, testCasesPath);
 				messageListeners.forEach(listener -> listener.info(String.format("Mutant [%s] is killed by [%s] test cases", mutant.getId(), mutant.getKilledBy().size())));
 			} catch (Exception e) {
 				mutant.setCompilable(false);
@@ -131,20 +131,20 @@ public abstract class AbstractTestRunner {
 	private final Pattern pattern = Pattern.compile(exception_regex);
 
 	/**
-	 * @param mutant to be executed
+	 * @param originalFile file underExecution
+	 * @param testCasesPath path to test cases
 	 * @return set of failed test cases
 	 * @throws Exception if the execution is failed for any reason
 	 */
-	private List<String> excute(AbstractMutant mutant, Config config) throws Exception {
+	private List<String> excute(AbstractMutant mutant, String originalFile, String testCasesPath) throws Exception {
 
-		org.hu.hom.core.utils.Compiler.compile(FileType.noExtension(config.getOriginalFile()), mutant.getCode(), Config.TMP);
+		org.hu.hom.core.utils.Compiler.compile(FileType.noExtension(originalFile), mutant.getCode(), Constants.TMP);
 		
-		FileUtils.copyDirectory(config.getTestCasesPath(),
-				Config.TMP);
+		FileUtils.copyDirectory(testCasesPath, Constants.TMP);
 
 		StringBuilder testSuites = new StringBuilder();
 
-		getTestSuites(config).forEach(testSuite -> testSuites.append(testSuite + " "));
+		getTestSuites(testCasesPath).forEach(testSuite -> testSuites.append(testSuite + " "));
 
 		String command = getCommand(testSuites.toString());
 		
@@ -166,7 +166,7 @@ public abstract class AbstractTestRunner {
 	}
 	
 	/**
-	 * @param testSuites provided by {@link Config}
+	 * @param testSuites provided
 	 * @return {@link JUnit4} test execution command
 	 */
 	public abstract String getCommand(String testSuites);

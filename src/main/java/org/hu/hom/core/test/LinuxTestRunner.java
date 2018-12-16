@@ -19,7 +19,7 @@ package org.hu.hom.core.test;
 
 import java.io.File;
 
-import org.hu.hom.core.config.Config;
+import org.hu.hom.api.config.Constants;
 
 /**
  * <p>
@@ -37,8 +37,8 @@ public class LinuxTestRunner extends AbstractTestRunner{
 	@Override
 	public String getCommand(String testSuites) {
 		return String.format("java -cp :%s:%s org.junit.runner.JUnitCore %s", 
-				Config.TMP,
-				Config.JUNIT + File.separator + "*",
+				Constants.TMP,
+				Constants.JUNIT + File.separator + "*",
 				testSuites);
 
 	}

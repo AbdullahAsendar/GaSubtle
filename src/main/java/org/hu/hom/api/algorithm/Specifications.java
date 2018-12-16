@@ -17,8 +17,6 @@
  */
 package org.hu.hom.api.algorithm;
 
-import org.hu.hom.core.config.Config;
-
 /**
  * 
  * <p>
@@ -42,12 +40,12 @@ public class Specifications {
 	 * This method returns the population size to be 
 	 * used based on the number of LOC of the original file.
 	 * 
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param originalFile under execution
 	 * @return the population size to use
 	 */
-	public static int getPopulationSize(Config config) {
+	public static int getPopulationSize(String originalFile) {
 		return MAX_GENERATION_SIZE;
-//		return Math.min(ALPHA * FileUtils.getLoc(config.getOriginalFile()), MAX_GENERATION_SIZE);
+//		return Math.min(ALPHA * FileUtils.getLoc(originalFile), MAX_GENERATION_SIZE);
 	}
 
 	/**

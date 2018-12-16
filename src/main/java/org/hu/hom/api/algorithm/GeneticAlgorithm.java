@@ -33,9 +33,9 @@ import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
 import org.hu.hom.api.algorithm.report.ReportEngine;
+import org.hu.hom.api.config.Constants;
 import org.hu.hom.api.listener.GeneticAlgorithmListener;
 import org.hu.hom.api.listener.MessageListener;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.core.exception.HomException;
 import org.hu.hom.core.mutation.MutationModel;
 import org.hu.hom.core.object.AbstractMutant;
@@ -52,6 +52,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import lombok.Builder;
+import lombok.Setter;
 import lombok.Singular;
 
 
@@ -87,7 +88,6 @@ public class GeneticAlgorithm  {
 	private final Stopwatch stopwatch = Stopwatch.createUnstarted();
 	private final ReportEngine<HigherOrderMutant> reportEngine = ReportEngine.build();;
 
-	private Config config;
 	private File outputDir;
 
 	private Evaluation<HigherOrderMutant> evaluation;
@@ -97,6 +97,51 @@ public class GeneticAlgorithm  {
 
 	private @Singular Set<GeneticAlgorithmListener> geneticAlgorithmListeners;
 	private @Singular Set<MessageListener> messageListeners;
+	
+	/**
+	 * The percentage of mutants that will be picked to do operations on
+	 */
+	private @Builder.Default Integer mutationPercentage = 10;
+	/**
+	 * The order of the {@link HigherOrderMutant} to not be exceeded
+	 */
+	private @Builder.Default Integer maxOrder = 2;
+	/**
+	 * The number of times the algorithm will run
+	 */
+	private @Builder.Default Integer runRepeat = 1;
+	/**
+	 * The maximum number of subtle {@link HigherOrderMutant}s to generate
+	 */
+	private Integer requiredSubtleHoms;
+	/**
+	 * The maximum number of {@link HigherOrderMutant}s to generate
+	 */
+	private Integer maxHoms;
+	/**
+	 * The max generation to reach
+	 */
+	private Integer maxGeneration;
+	/**
+	 * Timeout in seconds
+	 */
+	private Long timeout;
+	/**
+	 * Path to original <i>.java</i> file under execution
+	 */
+	private @Setter String originalFile;
+	/**
+	 * Path to test suites <i>.class</i> files
+	 */
+	private String testCasesPath;
+	/**
+	 * Path to store the results to
+	 */
+	private String resultPath;
+	/**
+	 * 
+	 */
+	private @Builder.Default String mutantsPath = Constants.DEFAULT_MUTANTS_PATH;
 
 	
 	private void init() {
@@ -105,14 +150,10 @@ public class GeneticAlgorithm  {
 		
 		messageListeners.forEach(listener -> listener.debug("Configuring"));
 		
-		config.validate();
-		
-//		config.setSelectionStrategy(selectionStrategy);
-		
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> FileUtils.forceDelete(Config.WORKBENCH)));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> FileUtils.forceDelete(Constants.WORKBENCH)));
 		
 		try {
-			MutationModel.init(config, messageListeners);
+			originalFile = MutationModel.init(originalFile, mutantsPath, testCasesPath, messageListeners);
 		} catch (Exception e) {
 			HomException.throwException(e);
 		}
@@ -131,7 +172,7 @@ public class GeneticAlgorithm  {
 		
 		init();
 		
-		IntStream.rangeClosed(1, config.getRunRepeat()).forEach(this::run);
+		IntStream.rangeClosed(1, runRepeat).forEach(this::run);
 
 		messageListeners.forEach(listener -> listener.info("==========="));
 		messageListeners.forEach(listener -> listener.info("Done"));
@@ -141,7 +182,7 @@ public class GeneticAlgorithm  {
 	
 	private void run(int runCount) {
 
-		outputDir = new File(String.format("%s%s%s%s%s", config.getResultPath(), File.separator,
+		outputDir = new File(String.format("%s%s%s%s%s", resultPath, File.separator,
 				selection.getClass().getSimpleName(), File.separator, "run_" + IDUtils.newID()));
 
 		outputDir.mkdirs();
@@ -153,7 +194,7 @@ public class GeneticAlgorithm  {
 				
 		messageListeners.forEach(listener -> listener.info("Creating initial population"));
 
-		population.addMutants(MutationModel.generateRandomPopulation(config, messageListeners).getMutants());
+		population.addMutants(MutationModel.generateRandomPopulation(originalFile, testCasesPath, messageListeners).getMutants());
 
 		int generatedHOMs = 0;
 
@@ -172,18 +213,18 @@ public class GeneticAlgorithm  {
 				
 				final int currentGenerationNumber = generationNumber;
 								
-				List<HigherOrderMutant> selectedMutants = selection.select(population, config.getSelectionSize(population.getMutants().size()));
+				List<HigherOrderMutant> selectedMutants = selection.select(population, getSelectionSize(population.getMutants().size()));
 								
 				Set<HigherOrderMutant> offspring = Sets.newHashSet();
 				offspring.addAll(mutation.mutate(crossover.excute(selectedMutants)));
 				
 				messageListeners.forEach(listener -> listener.debug(String.format("new [%s] mutatns generated", offspring.size())));
 
-				TestExecutor.instance.execute(Lists.newArrayList(offspring), config, messageListeners);
+				TestExecutor.instance.execute(Lists.newArrayList(offspring), originalFile, testCasesPath, messageListeners);
 
 				population.addMutants(Lists.newArrayList(offspring));
 				
-				population.setMutants(population.getMutants().subList(0, Math.min(population.getMutants().size(), Specifications.getPopulationSize(config))));
+				population.setMutants(population.getMutants().subList(0, Math.min(population.getMutants().size(), Specifications.getPopulationSize(originalFile))));
 				
 				evaluation.evaluate(population.getMutants());
 
@@ -208,7 +249,7 @@ public class GeneticAlgorithm  {
 		
 		stopwatch.stop();
 		
-		reportEngine.export(outputDir, config, stopwatch);
+		reportEngine.export(outputDir, maxOrder, stopwatch);
 		
 		report(liveMutants, "live_mutants");
 		report(subtleMutants, "subtle_mutants");
@@ -224,19 +265,19 @@ public class GeneticAlgorithm  {
 	 */
 	private boolean stopConditionMet(Stopwatch stopwatch, int subtle_homs, int homs, int generation) {
 
-		if (config.getRequiredSubtleHoms() != null && (subtle_homs >= config.getRequiredSubtleHoms())) 
+		if (requiredSubtleHoms != null && (subtle_homs >= requiredSubtleHoms)) 
 			return true;
 		
 
-		if (config.getMaxHoms() != null && (homs >= config.getMaxHoms())) 
+		if (maxHoms != null && (homs >= maxHoms)) 
 			return true;
 		
 
-		if (config.getTimeout() != null && ((int) stopwatch.elapsed().getSeconds() >= config.getTimeout())) 
+		if (timeout != null && ((int) stopwatch.elapsed().getSeconds() >= timeout)) 
 			return true;
 		
 		
-		if (config.getMaxGeneration() != null && (generation >= config.getMaxGeneration()))
+		if (maxGeneration != null && (generation >= maxGeneration))
 			return true;
 
 		return false;
@@ -268,6 +309,18 @@ public class GeneticAlgorithm  {
 	}
 	
 	/**
+	 * @param populationSize of the current generation
+	 * @return number of mutants that shall be selected
+	 */
+	public int getSelectionSize(int populationSize) {
+		int selectionSize = (int) ((mutationPercentage / 100.0) * populationSize);
+		if (selectionSize <= 0)
+			selectionSize = 1;
+
+		return selectionSize;
+	}
+	
+	/**
 	 * <p>
 	 * Makes sure that all options are provided;
 	 * 
@@ -278,11 +331,19 @@ public class GeneticAlgorithm  {
 	 */
 	private void validate() {
 
-		Validator.assertNotNull(config, "config");
 		Validator.assertNotNull(selection, "selection");
 		Validator.assertNotNull(evaluation, "evaluation");
 		Validator.assertNotNull(crossover, "crossover");
 		Validator.assertNotNull(mutation, "mutation");
+		Validator.assertNotNull(mutationPercentage, "mutationPercentage");
+		Validator.assertNotNull(maxOrder, "maxOrder");
+		Validator.assertNotNull(runRepeat, "runRepeat");
+		Validator.assertNotNull(originalFile, "originalFile");
+		Validator.assertNotNull(testCasesPath, "testCasesPath");
+		Validator.assertNotNull(resultPath, "resultPath");
+
+		if (requiredSubtleHoms == null && maxHoms == null && maxGeneration == null && timeout == null)
+			HomException.throwException("No termination condition provided");
 
 	}
 

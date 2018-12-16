@@ -3,8 +3,8 @@ org.hu.hom.api.algorithm.object
 org.hu.hom.api.algorithm.object.impl
 org.hu.hom.api.algorithm.object.impl.selection
 org.hu.hom.api.algorithm.report
-org.hu.hom.api.config
 org.hu.hom.api.listener
+org.hu.hom.core.config
 org.hu.hom.core.exception
 org.hu.hom.core.mutation
 org.hu.hom.core.object

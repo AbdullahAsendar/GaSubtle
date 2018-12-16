@@ -27,6 +27,7 @@ import java.util.stream.IntStream;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
 import org.hu.hom.ui.GaConfig;
 import org.hu.hom.ui.graphical.UiLauncher;
+import org.hu.hom.ui.graphical.model.constants.SharedConfig;
 import org.hu.hom.ui.graphical.model.utils.CommonUtils;
 import org.hu.hom.ui.graphical.model.utils.FileGenerator;
 import org.hu.hom.ui.graphical.view.GaMonitor;
@@ -74,19 +75,23 @@ public class MainController implements Initializable {
 		
 		if(!validate()) return;
 		
-		GaConfig.setOriginalFile(txtOriginalFile.getText());
-		GaConfig.setTestCasesPath(txtTestCases.getText());
-		GaConfig.setSelectionStrategy(cmbSelctionStrategy.getSelectionModel().getSelectedItem().getSelectionStrategy());
-		GaConfig.setResultPath(new File(GaConfig.getOriginalFile()).getParent());
+		GaConfig gaConfig = 
+				GaConfig
+				.builder()
+				.originalFile(txtOriginalFile.getText())
+				.testCasesPath(txtTestCases.getText())
+				.selectionStrategy(cmbSelctionStrategy.getSelectionModel().getSelectedItem().getSelectionStrategy())
+				.resultPath(new File(txtOriginalFile.getText()).getParent())
+				.requiredSubtleHoms(cmbMaxNumSubtleHoms.getSelectionModel().getSelectedItem())
+				.maxHoms(cmbMaxNumHoms.getSelectionModel().getSelectedItem())
+				.maxGeneration(cmbMaxGeneration.getSelectionModel().getSelectedItem())
+						.timeout(cmbTimeout.getSelectionModel().getSelectedItem() != null
+								? Long.valueOf(cmbTimeout.getSelectionModel().getSelectedItem() * 60)
+								: null)
+				.build();
 		
-		GaConfig.setRequiredSubtleHoms(cmbMaxNumSubtleHoms.getSelectionModel().getSelectedItem());
-		GaConfig.setMaxHoms(cmbMaxNumHoms.getSelectionModel().getSelectedItem());
-		GaConfig.setMaxGeneration(cmbMaxGeneration.getSelectionModel().getSelectedItem());
-		if(cmbTimeout.getSelectionModel().getSelectedItem()!=null)
-		GaConfig.setTimeout(Long.valueOf(cmbTimeout.getSelectionModel().getSelectedItem() * 60));
-		
-//		GaConfig.setPopulationSize(cmbPopulationSize.getSelectionModel().getSelectedItem());
-//		GaConfig.setMutationPercentage(cmbPopulationSize.getSelectionModel().getSelectedItem());
+		SharedConfig.setGaConfig(gaConfig);
+
 		
 		UiLauncher.showView(GaMonitor.class);
 

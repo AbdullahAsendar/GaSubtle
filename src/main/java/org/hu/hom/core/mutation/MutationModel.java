@@ -27,10 +27,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.hu.hom.api.algorithm.GeneticAlgorithm;
 import org.hu.hom.api.algorithm.Specifications;
+import org.hu.hom.api.config.Constants;
 import org.hu.hom.api.listener.MessageListener;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.core.exception.HomException;
 import org.hu.hom.core.object.FirstOrderMutant;
 import org.hu.hom.core.object.HigherOrderMutant;
@@ -83,31 +82,34 @@ public class MutationModel {
 	 * After reading the {@link MutationModel#first_order_mutants} this class
 	 * executes these mutants using {@link TestExecutor#execute(List, Config, Set)}
 	 *
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param originalFile to be mutated
+	 * @param mutantsPath to store the mutants in
+	 * @param testCasesPath path to test cases
 	 * @param messageListeners for logging
+	 * @return new generated original file
 	 * @throws Exception if anything goes down
 	 */
-	public static void init(Config config, Set<MessageListener> messageListeners) throws Exception {
+	public static String init(String originalFile, String mutantsPath, String testCasesPath, Set<MessageListener> messageListeners) throws Exception {
 
 		messageListeners.forEach(listner -> listner.info("Generating FOMs"));
 		
-		config.setOriginalFile(
+		
+		originalFile =
 				MutantsGenerator
 				.builder()
-				.originalFile(config.getOriginalFile())
-				.outputPath(config.getMutantsPath())
-				.muJavaHome(Config.DEFAULT_MU_JAVA_HOME)
+				.originalFile(originalFile)
+				.outputPath(mutantsPath)
+				.muJavaHome(Constants.DEFAULT_MU_JAVA_HOME)
 				.build()
-				.generate());
+				.generate();
 
-		
 		first_order_mutants = new HashMap<>();
 
-		originalCode = FileUtils.readJavaFile(config.getOriginalFile());
+		originalCode = FileUtils.readJavaFile(originalFile);
 		
 		messageListeners.forEach(listner -> listner.debug("Reading generated FOMs"));
 
-		Collection<File> files = FileUtils.listFiles(new File(config.getMutantsPath()), new String[] { "java" }, true);
+		Collection<File> files = FileUtils.listFiles(new File(mutantsPath), new String[] { "java" }, true);
 
 		messageListeners.forEach(listner -> listner.info(String.format("Generated %s FOMs", files.size())));
 
@@ -122,7 +124,7 @@ public class MutationModel {
 
 		messageListeners.forEach(listner -> listner.debug("Excuting generated mutants"));
 
-		TestExecutor.instance.execute(Lists.newArrayList(first_order_mutants.values()), config, messageListeners);
+		TestExecutor.instance.execute(Lists.newArrayList(first_order_mutants.values()), originalFile, testCasesPath, messageListeners);
 		
 		messageListeners.forEach(l -> l.error("live mutants:"));
 		first_order_mutants.entrySet().stream().filter(a -> a.getValue().isLive())
@@ -141,39 +143,42 @@ public class MutationModel {
 			HomException.throwException(
 					"Can not run the Genetic Algorithm, reason: 0 mutants left after removing non compile-able and live mutants");
 		}
+		
+		return originalFile;
 
 	}
 
 
 	/**
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param originalFile to use in choosing mutants
+	 * @param testCasesPath path to test cases
 	 * @param messageListeners to log 
 	 * @return a random population
 	 * 
 	 * 
 	 * @see Specifications
 	 */
-	public static Population<HigherOrderMutant> generateRandomPopulation(Config config, Set<MessageListener> messageListeners) {
+	public static Population<HigherOrderMutant> generateRandomPopulation(String originalFile, String testCasesPath, Set<MessageListener> messageListeners) {
 
 		Population<HigherOrderMutant> population = Population.newPopulation(HigherOrderMutant.class);
 		
-		int populationSize = Specifications.getPopulationSize(config);
+		int populationSize = Specifications.getPopulationSize(originalFile);
 
 		IntStream.rangeClosed(1, Specifications.getFirstOrderSize(populationSize)).forEach(i -> {
-			HigherOrderMutant mutant = HigherOrderMutant.build(config.getOriginalFile());
+			HigherOrderMutant mutant = HigherOrderMutant.build(originalFile);
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			population.addMutant(mutant);
 		});
 		
 		IntStream.rangeClosed(1, Specifications.getSecondOrderSize(populationSize)).forEach(i -> {
-			HigherOrderMutant mutant = HigherOrderMutant.build(config.getOriginalFile());
+			HigherOrderMutant mutant = HigherOrderMutant.build(originalFile);
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			population.addMutant(mutant);
 		});
 		
 		IntStream.rangeClosed(1, Specifications.getThirdOrderSize(populationSize)).forEach(i -> {
-			HigherOrderMutant mutant = HigherOrderMutant.build(config.getOriginalFile());
+			HigherOrderMutant mutant = HigherOrderMutant.build(originalFile);
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
@@ -181,7 +186,7 @@ public class MutationModel {
 		});
 		
 		IntStream.rangeClosed(1, Specifications.getFourthOrderSize(populationSize)).forEach(i -> {
-			HigherOrderMutant mutant = HigherOrderMutant.build(config.getOriginalFile());
+			HigherOrderMutant mutant = HigherOrderMutant.build(originalFile);
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
 			mutant.addFirstOrderMutant(getRandomMutant(mutant));
@@ -190,7 +195,7 @@ public class MutationModel {
 		});
 
 
-		TestExecutor.instance.execute(population, config, messageListeners);
+		TestExecutor.instance.execute(population, originalFile, testCasesPath, messageListeners);
 
 		return population;
 	}

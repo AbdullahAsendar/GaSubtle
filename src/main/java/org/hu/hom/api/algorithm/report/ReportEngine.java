@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 import org.hu.hom.core.utils.ExcelWriter;
@@ -76,16 +75,16 @@ public class ReportEngine<T extends AbstractMutant> {
 	
 	/**
 	 * @param outputDir to save the report in
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param maxOrder not to be exceeded
 	 * @param stopwatch of the {@link GeneticAlgorithm}
 	 */
-	public void export(File outputDir, Config config, Stopwatch stopwatch) {
+	public void export(File outputDir, int maxOrder, Stopwatch stopwatch) {
 		File file = new File(String.format("%s%s%s", outputDir.getPath(), File.separator, "report.xlsx"));
 
 		List<List<Object>> rows = Lists.newArrayList();
 
-		List<Integer> degrees = getDegrees(config.getMaxOrder());
-		List<String> degreeTitles = getDegreeTitles(config.getMaxOrder());
+		List<Integer> degrees = getDegrees(maxOrder);
+		List<String> degreeTitles = getDegreeTitles(maxOrder);
 		
 		List<Object> headers = Lists.newArrayList();
 		

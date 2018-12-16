@@ -29,9 +29,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.hu.hom.api.algorithm.GeneticAlgorithm;
 import org.hu.hom.api.algorithm.object.SelectionStrategy;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.HigherOrderMutant;
 import org.hu.hom.core.utils.PropertiesUtils;
+import org.hu.hom.ui.GaConfig;
 
 import lombok.Getter;
 
@@ -52,9 +52,9 @@ public class CommandHandler {
 
 	/**
 	 * @param args of the cmd
-	 * @return config of the {@link GeneticAlgorithm}
+	 * @return GaConfig of the {@link GeneticAlgorithm}
 	 */
-	public static Config handle(String[] args) {
+	public static GaConfig handle(String[] args) {
 
 		Options options = new Options();
 
@@ -83,8 +83,8 @@ public class CommandHandler {
 		String home = StringUtils.isNotBlank(strHome) ? strHome : Constants.DEFAULT_HOME;
 		String benchmarkPath = home + File.separator + strBenchmark + File.separator;
 
-		Config config = 
-				Config
+		GaConfig config = 
+				GaConfig
 				.builder()
 				.mutantsPath(benchmarkPath + Constants.MUTANTS_PATH)
 				.originalFile(benchmarkPath + Constants.ORIGINAL_FILES_PATH + File.separator + strBenchmark + ".java")

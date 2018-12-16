@@ -21,9 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.SystemUtils;
-import org.hu.hom.api.algorithm.GeneticAlgorithm;
 import org.hu.hom.api.listener.MessageListener;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.AbstractMutant;
 import org.hu.hom.core.object.Population;
 
@@ -71,22 +69,24 @@ public class TestExecutor {
 
 	/**
 	 * @param population to be executed
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param originalFile file underExecution
+	 * @param testCasesPath path to test cases
 	 * @param messageListeners for logging
 	 * @param <T> The type of {@link Population}.
 	 */
-	public <T extends AbstractMutant> void execute(Population<T> population, Config config, Set<MessageListener> messageListeners) {
-		testRunner.execute(population, config, messageListeners);
+	public <T extends AbstractMutant> void execute(Population<T> population, String originalFile, String testCasesPath, Set<MessageListener> messageListeners) {
+		testRunner.execute(population, originalFile, testCasesPath, messageListeners);
 	}
 
 	/**
 	 * @param mutants to be executed
-	 * @param config of the {@link GeneticAlgorithm}
+	 * @param originalFile file underExecution
+	 * @param testCasesPath path to test cases
 	 * @param messageListeners for logging
 	 * @param <T> The type of mutants.
 	 */
-	public <T extends AbstractMutant> void execute(List<T> mutants, Config config, Set<MessageListener> messageListeners) {
-		testRunner.execute(mutants, config, messageListeners);
+	public <T extends AbstractMutant> void execute(List<T> mutants, String originalFile, String testCasesPath, Set<MessageListener> messageListeners) {
+		testRunner.execute(mutants, originalFile, testCasesPath, messageListeners);
 	}
 
 }

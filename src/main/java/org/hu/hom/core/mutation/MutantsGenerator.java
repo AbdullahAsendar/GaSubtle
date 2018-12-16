@@ -78,10 +78,6 @@ public class MutantsGenerator {
 		FileUtils.deleteDirectory(muJavaHome);
 		
 		return outputPath + File.separator + FileUtils.clean(originalFile);
-		
-		
-//		LOG.info("Original file :" + config.getOriginalFile());
-
 	}
 
 	/**

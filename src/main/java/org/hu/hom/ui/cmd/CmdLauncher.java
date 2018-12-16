@@ -30,8 +30,8 @@ import org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl;
 import org.hu.hom.api.algorithm.object.impl.selection.Selection;
 import org.hu.hom.api.listener.MessageListener;
-import org.hu.hom.core.config.Config;
 import org.hu.hom.core.object.HigherOrderMutant;
+import org.hu.hom.ui.GaConfig;
 
 import com.google.common.collect.Lists;
 
@@ -53,7 +53,7 @@ public class CmdLauncher {
 		sign();
 		
 		// handle cmd commands
-		Config config = CommandHandler.handle(args);
+		GaConfig config = CommandHandler.handle(args);
 		
 		// print current configuration
 		print(config);
@@ -75,12 +75,24 @@ public class CmdLauncher {
 	/**
 	 * <p>
 	 * Starts the {@link GeneticAlgorithm}
+	 * 
+	 * 
 	 */
-	private static void startGeneticAlgorithm(Config config, SelectionStrategy<HigherOrderMutant> selection) {
+	private static void startGeneticAlgorithm(GaConfig config, SelectionStrategy<HigherOrderMutant> selection) {
 		
 		GeneticAlgorithm
 		.builder()
-		.config(config)
+		.mutationPercentage(config.getMutationPercentage())
+		.maxOrder(config.getMaxOrder())
+		.runRepeat(config.getRunRepeat())
+		.requiredSubtleHoms(config.getRequiredSubtleHoms())
+		.maxHoms(config.getMaxHoms())
+		.maxGeneration(config.getMaxGeneration())
+		.timeout(config.getTimeout())
+		.originalFile(config.getOriginalFile())
+		.testCasesPath(config.getTestCasesPath())
+		.resultPath(config.getResultPath())
+		.mutantsPath(config.getMutantsPath())
 		.evaluation(new EvaluationDefaultImpl())
 		.evaluation(new EvaluationDefaultImpl())
 		.crossover(new CrossoverDefaultImpl())
@@ -123,10 +135,10 @@ public class CmdLauncher {
 		}
 	}
 	
-	public static void print(Config config) {
+	public static void print(GaConfig config) {
 		
 		LOG.info("Original file      : " + config.getOriginalFile());
-		LOG.info("Selection Strategy : " + ((CommandHandler.getSelectionStrategy() == null) ? Lists.newArrayList(Selection.values()) : CommandHandler.getSelectionStrategy()));
+		LOG.info("Selection Strategy : " + ((CommandHandler.getSelectionStrategy() == null) ? Lists.newArrayList(Selection.values()) : config.getSelectionStrategy().getClass().getSimpleName()));
 		LOG.info("Output Path        : " + config.getResultPath());
 		
 	}

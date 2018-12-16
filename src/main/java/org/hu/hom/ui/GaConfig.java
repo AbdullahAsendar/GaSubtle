@@ -18,11 +18,11 @@
 package org.hu.hom.ui;
 
 import org.hu.hom.api.algorithm.object.SelectionStrategy;
+import org.hu.hom.api.config.Constants;
 import org.hu.hom.core.object.HigherOrderMutant;
 
-import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -32,30 +32,29 @@ import lombok.Setter;
  * @author Asendar
  *
  */
-
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class GaConfig {
 
-	private @Setter @Getter static Integer mutationPercentage = 10;
-	private @Setter @Getter static Integer maxOrder = 2;
-	private @Setter @Getter static Integer runRepeat = 1;	
-
+	private @Builder.Default @Setter @Getter Integer mutationPercentage = 10;
+	private @Builder.Default @Setter @Getter Integer maxOrder = 2;
+	private @Builder.Default @Setter @Getter Integer runRepeat = 1;
 
 	/**
 	 * 
 	 * 
 	 */
-	private @Setter @Getter static Integer requiredSubtleHoms;
-	private @Setter @Getter static Integer maxHoms;
-	private @Setter @Getter static Integer maxGeneration;
-	private @Setter @Getter static Long timeout;	
+	private  @Setter @Getter Integer requiredSubtleHoms;
+	private @Setter @Getter Integer maxHoms;
+	private @Setter @Getter Integer maxGeneration;
+	private @Setter @Getter Long timeout;
 	/**
 	 * 
 	 * 
 	 */
-	private @Setter @Getter static String originalFile;
-	private @Setter @Getter static String testCasesPath;
-	private @Setter @Getter static String resultPath;
-	
-	private @Setter @Getter static SelectionStrategy<HigherOrderMutant> selectionStrategy;
+	private @Setter @Getter String originalFile;
+	private @Setter @Getter String testCasesPath;
+	private @Setter @Getter String resultPath;
+	private @Builder.Default @Setter @Getter String mutantsPath = Constants.DEFAULT_MUTANTS_PATH;
+
+	private @Setter @Getter SelectionStrategy<HigherOrderMutant> selectionStrategy;
 }
