@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jar-files>${project.basedir}/src/main/resources/jar-files</jar-files>
-		<main.class>org.hu.hom.main.UiLauncher</main.class>
+		<main.class>org.hu.hom.ui.graphical.UiLauncher</main.class>
 		<jre.version>1.8</jre.version>
 
 		<springboot-javafx.version>2.1.6</springboot-javafx.version>
@@ -203,10 +203,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>
-					<mainClass>${main.class}</mainClass>
-				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -215,9 +211,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
-
 
 		</plugins>
 

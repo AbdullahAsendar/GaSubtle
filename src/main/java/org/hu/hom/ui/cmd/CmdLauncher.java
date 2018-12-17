@@ -138,7 +138,7 @@ public class CmdLauncher {
 	public static void print(GaConfig config) {
 		
 		LOG.info("Original file      : " + config.getOriginalFile());
-		LOG.info("Selection Strategy : " + ((CommandHandler.getSelectionStrategy() == null) ? Lists.newArrayList(Selection.values()) : config.getSelectionStrategy().getClass().getSimpleName()));
+		LOG.info("Selection Strategy : " + ((CommandHandler.getSelectionStrategy() == null) ? Lists.newArrayList(Selection.values()) : CommandHandler.getSelectionStrategy().getClass().getSimpleName()));
 		LOG.info("Output Path        : " + config.getResultPath());
 		
 	}
