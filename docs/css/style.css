@@ -1199,7 +1199,7 @@ th {
   background: url(../img/backgrounds/4.jpg);
 }
 .background-5 {
-  background: url(../img/backgrounds/5.jpg);
+  background: url(../img/background.jpg);
 }
 .background-gradient-grey {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f2f2f2+95,f2f2f2+95,f2f2f2+100 */
@@ -7648,7 +7648,7 @@ Copyright (c) 2015 Daniel Eden
   padding-bottom: 40px;
 }
 .header-back-default {
-  background-image: url(../img/backgrounds/6.jpg);
+  background-image: url(../img/backgrounds/gene-background.jpg);
   background-position: bottom;
 }
 .header-back-simple {
@@ -7683,6 +7683,11 @@ Copyright (c) 2015 Daniel Eden
 .header-back-buttons .button {
   margin-right: 20px;
   min-width: 180px;
+}
+.header-back-buttons .button:hover {
+  background-color: #fff;
+  border: 0px;
+  color: #000 !important;
 }
 .header-back-buttons .button:last-child {
   margin-right: 0;
@@ -9577,6 +9582,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .menu-light > li > .sf-with-ul:after {
   color: #cbd3dd;
 }
+.menu-dark > li > a {
+  color: #333;
+}
 .sidr ul li a,
 .sidr ul li span {
   position: relative;
@@ -10168,6 +10176,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-weight: 100;
   margin-bottom: 30px;
 }
+.page-title-white {
+  font-size: 5em;
+  color: #fff;
+  font-weight: 100;
+  margin-bottom: 30px;
+}
+
 .page-info-simple .page-title {
   font-weight: 300;
   color: #333333;
@@ -10178,6 +10193,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .page-description {
   color: #1a1a1a;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+.page-description-white {
+  color: #fff;
   text-transform: uppercase;
   font-size: 1.25em;
   letter-spacing: 2px;
@@ -15892,7 +15916,7 @@ input.changelog-input {
 .call-to-action {
   padding: 80px 0;
   background-size: cover;
-  background-image: url('../img/background_2.jpg');
+  background-image: url('../img/backgrounds/7.jpg');
   text-align: center;
 }
 .call-to-action-title {
@@ -16388,7 +16412,7 @@ input.changelog-input {
   vertical-align: middle;
 }
 .one-page-logo .logo-image img {
-  height: 35px;
+  width: 170px;
 }
 .one-page-meta {
   padding: 15px 0;
@@ -17512,6 +17536,13 @@ input.changelog-input {
   padding: 70px 50px 55px;
   text-align: center;
 }
+
+.featured-boxes-item-icon {
+  font-size: 60px;
+  color: #1a1a1a;
+  margin-bottom:30px; 
+}
+
 .featured-boxes-item:nth-child(3n+3) {
   border-right: none;
 }
@@ -17523,6 +17554,7 @@ input.changelog-input {
 .featured-boxes-item-pretitle {
   font-size: 18px;
   font-weight: 300;
+  
   color: #cbd3dd;
   line-height: 23px;
   margin: 0;
