@@ -1,102 +1,7 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400&subset=latin,cyrillic-ext,cyrillic,latin-ext);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,cyrillic,latin-ext);
-/**
- * Description: VSDocs - Documentation Framework
- * Version: 1.0.0
- * Author: VSArt - http://www.vsart.me
- *
- * Summary:
- *
- *	0. GLOBALS
- *		- 0.1. MIXINS
- *		- 0.2. CONFIG
- *		- 0.3. NORMALIZE
- *    - 0.4. GRID
- *		- 0.5. BACKGROUNDS
- *    - 0.6. GENERAL
- *		- 0.7. LAYOUT
- *		- 0.8. TRANSITIONS
- *    - 0.9. TEXT
- *		- 0.10. IMAGE
- *    - 0.11. LIST
- *    - 0.12. FONT-AWESOME
- *    - 0.13. PE-ICON-7-STROKE
- *		- 0.14. ANIMATE
- * 1. LIBS
- *		- 1.1. LOGO
- * 2. MODULES
- *    - 2.1. LOGO
- *    - 2.2. HEADER
- *    - 2.3. HEADER-BACK
- *    - 2.4. FOOTER
- *    - 2.5. BUTTON
- *    - 2.6. TABLE
- *    - 2.7. FORMS
- *    - 2.8. SEARCH
- *    - 2.9. TAGS
- *    - 2.10. MENU
- *    - 2.11. MENU-VERTICAL
- *    - 2.12. MENU-SIDE
- *    - 2.13. LANGUAGES
- *    - 2.14. PAGE-INFO
- *    - 2.15. ROTATOR
- *    - 2.16. PANELS
- *    - 2.17. CATEGORY-INFO
- *    - 2.18. PROMO-TITLE
- *    - 2.19. BOX
- *    - 2.20. NUMBER
- *    - 2.21. BROWSERS
- *    - 2.22. NOTE
- *    - 2.23. MODAL
- *    - 2.24. CODE-HIGHLIGHT
- *    - 2.25. FILE-TREE
- *    - 2.26. SKILL
- *    - 2.27. STEPS
- *    - 2.28. STEPS-INTERACTIVE
- *    - 2.29. STEPS-SLIDER
- *    - 2.30. COLUMN-FILL
- *    - 2.31. BEFORE-AND-AFTER
- *    - 2.32. FAQ
- *    - 2.33. INFO
- *    - 2.34. INFO-DELIMITER
- *    - 2.35. CATEGORY-LIST
- *    - 2.36. TABS
- *    - 2.37. NAVIGATION
- *    - 2.38. GIF-PLAYER
- *    - 2.39. VIDEO
- *    - 2.40. VIDEO-ADVANCED
- *    - 2.41. VIDEO-CUSTOM
- *    - 2.42. VIDEO-PLAYLIST-CUSTOM
- *    - 2.43. LIST-VIEW
- *    - 2.44. GRID-VIEW
- *    - 2.45. BOOK
- *    - 2.46. BOOK-GRID
- *    - 2.47. SOCIAL
- *    - 2.48. NOTIFICATION
- *    - 2.49. LOGIN
- *    - 2.50. CONTACTS
- *    - 2.51. CONTACTS-INFO
- *    - 2.52. CHANGELOG
- *    - 2.53. BLOG
- *    - 2.54. ARTICLE
- *    - 2.55. ARTICLE-COMMENT
- *    - 2.56. PRICE-LIST
- *    - 2.57. BRANDS
- *    - 2.58. CALL-TO-ACTION
- *    - 2.59. ONE-PAGE
- *		- 2.60. ONE-PAGE-NAV
- */
-/* ==========================================================================
-   0. ELEMENT
-   ========================================================================== */
-/* ==========================================================================
-   Colors configuration
-   ========================================================================== */
-/* ==========================================================================
-   Fonts configuration
-   ========================================================================== */
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1294,7 +1199,7 @@ th {
   background: url(../img/backgrounds/4.jpg);
 }
 .background-5 {
-  background: url(../img/background.jpg);
+  background: url(../img/backgrounds/5.jpg);
 }
 .background-gradient-grey {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f2f2f2+95,f2f2f2+95,f2f2f2+100 */
@@ -7743,7 +7648,7 @@ Copyright (c) 2015 Daniel Eden
   padding-bottom: 40px;
 }
 .header-back-default {
-  background-image: url(../img/backgrounds/gene-background.jpg);
+  background-image: url(../img/backgrounds/6.jpg);
   background-position: bottom;
 }
 .header-back-simple {
@@ -7778,11 +7683,6 @@ Copyright (c) 2015 Daniel Eden
 .header-back-buttons .button {
   margin-right: 20px;
   min-width: 180px;
-}
-.header-back-buttons .button:hover {
-  background-color: #fff;
-  border: 0px;
-  color: #000 !important;
 }
 .header-back-buttons .button:last-child {
   margin-right: 0;
@@ -9677,9 +9577,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .menu-light > li > .sf-with-ul:after {
   color: #cbd3dd;
 }
-.menu-dark > li > a {
-  color: #333;
-}
 .sidr ul li a,
 .sidr ul li span {
   position: relative;
@@ -10271,13 +10168,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-weight: 100;
   margin-bottom: 30px;
 }
-.page-title-white {
-  font-size: 5em;
-  color: #fff;
-  font-weight: 100;
-  margin-bottom: 30px;
-}
-
 .page-info-simple .page-title {
   font-weight: 300;
   color: #333333;
@@ -10288,15 +10178,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .page-description {
   color: #1a1a1a;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  letter-spacing: 2px;
-  line-height: 1.5;
-  font-weight: 300;
-  margin-bottom: 40px;
-}
-.page-description-white {
-  color: #fff;
   text-transform: uppercase;
   font-size: 1.25em;
   letter-spacing: 2px;
@@ -11742,7 +11623,7 @@ pre.line-numbers > code {
   }
 }
 /* 
- * 	Owl Carousel - Auto Height Plugin
+ *  Owl Carousel - Auto Height Plugin
  */
 .owl-height {
   -webkit-transition: height 500ms ease-in-out;
@@ -11845,7 +11726,7 @@ pre.line-numbers > code {
   display: block;
 }
 /* 
- * 	Owl Carousel - Lazy Load Plugin
+ *  Owl Carousel - Lazy Load Plugin
  */
 .owl-carousel .owl-item .owl-lazy {
   opacity: 0;
@@ -11859,7 +11740,7 @@ pre.line-numbers > code {
   transform-style: preserve-3d;
 }
 /* 
- * 	Owl Carousel - Video Plugin
+ *  Owl Carousel - Video Plugin
  */
 .owl-carousel .owl-video-wrapper {
   position: relative;
@@ -16011,7 +15892,7 @@ input.changelog-input {
 .call-to-action {
   padding: 80px 0;
   background-size: cover;
-  background-image: url('../img/backgrounds/7.jpg');
+  background-image: url('../img/background_2.jpg');
   text-align: center;
 }
 .call-to-action-title {
@@ -16507,7 +16388,7 @@ input.changelog-input {
   vertical-align: middle;
 }
 .one-page-logo .logo-image img {
-  width: 170px;
+  height: 35px;
 }
 .one-page-meta {
   padding: 15px 0;
@@ -17631,13 +17512,6 @@ input.changelog-input {
   padding: 70px 50px 55px;
   text-align: center;
 }
-
-.featured-boxes-item-icon {
-  font-size: 60px;
-  color: #1a1a1a;
-  margin-bottom:30px; 
-}
-
 .featured-boxes-item:nth-child(3n+3) {
   border-right: none;
 }
@@ -17649,7 +17523,6 @@ input.changelog-input {
 .featured-boxes-item-pretitle {
   font-size: 18px;
   font-weight: 300;
-  
   color: #cbd3dd;
   line-height: 23px;
   margin: 0;
