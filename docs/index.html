@@ -2,180 +2,341 @@
 <html lang="en">
 
 <head>
-    <title>GaSubtle: Higher Order Mutation using Genetic Algorithm</title>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
+    <title>GaSubtle: Higher Order Mutation using Genetic Algoeithm</title>
+    <!-- Page description -->
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="icon.png">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-        rel='stylesheet' type='text/css'>
-    <!-- FontAwesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
-        crossorigin="anonymous"></script>
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
-    <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon  -->
+    <link rel="icon" type="image/png" href="img/logos/logo.png">
 
+    <!-- Include StyleSheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="js/modernizr.js"></script>
 </head>
 
-<body class="landing-page">
+<body class="">
 
-    <!-- GITHUB BUTTON JS -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <!--FACEBOOK LIKE BUTTON JAVASCRIPT SDK-->
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-    <div class="page-wrapper">
-
-        <!-- ******Header****** -->
-        <header class="header text-center" style="background-image: url(assets/images/gene_wallpaper.jpg);">
+    <div class="page js-page ">
+        <!-- Header -->
+        <div class="header header-over large">
             <div class="container">
-                <div class="branding">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <!-- Logo Image -->
+                        <a href="index.html" class="logo-image logo-animated">
+                            <img src="img/logos/logo-light.png" alt="logo">
+                        </a>
+                        <!-- End of Logo Image -->
 
-                    <h1 class="logo text-bold">
-                        GaSubtle
-                    </h1>
-                </div>
-                <!--//branding-->
-                <div class="tagline">
-                    <p>Higher Order Mutation using Genetic Algoeithm</p>
+                    </div>
+                    <div class="col-md-9 col-sm-6 col-xs-6">
+                        <!-- Menu -->
+                        <nav class="right helper">
+                            <ul class="menu sf-menu js-menu menu-light">
+                                <li><a href="#">Home</a></li>
+
+                                <li>
+                                    <a href="#">Documentation</a>
+                                    <ul>
+                                        <li>
+                                            <a href="documentation.html">Guide</a>
+                                        </li>
+                                        <li>
+                                            <a href="javadoc/index.html">Java Docs</a>
+
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="https://github.com/AbdullahAsendar/GaSubtle/archive/master.zip">Download</a></li>
+                                <li><a href="https://github.com/AbdullahAsendar/GaSubtle" target="_blank">GitHub</a></li>
+                                <li><a href="https://github.com/AbdullahAsendar/GaSubtle/releases" target="_blank">Releases</a></li>
+                                <li><a href="license.html">License</a></li>
+
+                            </ul>
+                        </nav>
+                        <!-- End of Menu -->
+                    </div>
                 </div>
             </div>
-            <!--//container-->
-        </header>
-        <!--//header-->
+        </div>
+        <!-- End of Header -->
+        <!-- Header Back -->
+        <div class="header-back header-back-bg-3 header-back-large">
+            <div class="header-back-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Rotator -->
+                            <div class="rotator rotator-light ">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="page-info helper center">
+                                                <h1 class="page-title-white">Meet GaSubtle</h1>
+                                                <h2 class="page-description-white">Higher Order Mutation using Genetic Algoeithm</h2>
+                                            </div>
+                                            <div class="rotator-text"> It is
+                                                <span class="js-rotator">easy to use, cross platfom, fast, well documented, open source</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <section class="cards-section text-center">
-            <div class="container">
+                            <!-- End of Rotator -->
+                            <div class="header-back-buttons helper center">
+                                <a href="https://github.com/AbdullahAsendar/GaSubtle/archive/master.zip" class="button stroke rounded large white"><i class="fa fa-download"></i>Download</a>
+                                <a href="https://github.com/AbdullahAsendar/GaSubtle" class="button stroke rounded large white" target="_blank"><i class="fab fa-github"></i>GitHub</a>
 
-                <h2 class="title">What is GaSubtle?</h2>
-                <div class="intro">
-                    <p>
-                        GaSubtle is a tool based on Java that uses genatic algorithm to generate subtle higher order mutants.
-                    </p>
-                    <div class="cta-container">
-                        <a class="btn btn-primary btn-cta" href="https://github.com/AbdullahAsendar/GaSubtle/archive/master.zip" target="_blank"><i
-                                class="fas fa-cloud-download-alt"></i> Download</a>
+                            </div>
+                        </div>
                     </div>
-                    <!--//cta-container-->
                 </div>
-                <!--//intro-->
-                <div id="cards-wrapper" class="cards-wrapper row">
-                    <div class="item item-green col-lg-4 col-6">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <i class="icon fas fa-rocket"></i>
-                            </div>
-                            <!--//icon-holder-->
-                            <h3 class="title">Quick Start</h3>
-                            <p class="intro">Run the tool and see the results</p>
-                            <a class="link" href="start.html"><span></span></a>
-                        </div>
-                        <!--//item-inner-->
-                    </div>
-                    <!--//item-->
-                    <div class="item item-primary item-2 col-lg-4 col-6">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <i class="icon fas fa-cogs"></i>
-                            </div>
-                            <!--//icon-holder-->
-                            <h3 class="title">API</h3>
-                            <p class="intro">Integerate GaSubtle with your application</p>
-                            <a class="link" href="integeration.html"><span></span></a>
-                        </div>
-                        <!--//item-inner-->
-                    </div>
-                    <!--//item-->
-                    <div class="item item-red col-lg-4 col-6">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <i class="icon fas fa-code"></i>
-                            </div>
-                            <!--//icon-holder-->
-                            <h3 class="title">Developers</h3>
-                            <p class="intro">For developers who are interested in the tool</p>
-                            <a class="link" href="developers.html"><span></span></a>
-                        </div>
-                        <!--//item-inner-->
-                    </div>
-                    <!--//item-->
-                    <div class="item item-blue col-lg-4 col-6">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <i class="icon fab fa-java"></i>
-                            </div>
-                            <!--//icon-holder-->
-                            <h3 class="title">JavaDoc</h3>
-                            <p class="intro">Check the JavaDocs</p>
-                            <a class="link" href="javadoc/index.html"><span></span></a>
-                        </div>
-                        <!--//item-inner-->
-                    </div>
-                    <!--//item-->
-                    <div class="item item-purple col-lg-4 col-6">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <i class="icon fab fa-github-square"></i>
-                            </div>
-                            <!--//icon-holder-->
-                            <h3 class="title">Source Code</h3>
-                            <p class="intro">Check the source code on GitHub repository</p>
-                            <a class="link" href="https://github.com/AbdullahAsendar/GaSubtle"><span></span></a>
-                        </div>
-                        <!--//item-inner-->
-                    </div>
-
-                    <!--//item-->
-                    <div class="item item-orange col-lg-4 col-6">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <span aria-hidden="true" class="icon fas fa-book"></span>
-                            </div>
-                            <!--//icon-holder-->
-                            <h3 class="title">License</h3>
-                            <p class="intro">GaSubtle License</p>
-                            <a class="link" href="license.html"><span></span></a>
-                        </div>
-                        <!--//item-inner-->
-                    </div>
-                    <!--//item-->
-                </div>
-                <!--//cards-->
-
+                <!-- Next Section Button -->
+                <span class="next-section js-scroll-to next-section-light" data-target="#content">
+					<i class="fa-angle-down fa"></i>
+				</span>
+                <!-- End of Next Section Button -->
             </div>
-            <!--//container-->
-        </section>
-        <!--//cards-section-->
+        </div>
+        <!-- End of Header Back -->
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Promo Title -->
+                        <div class="promo-title-wrapper helper pt60">
+                            <h3 class="promo-title"> What is GaSubtle? </h3>
+                            <p class="promo-description"> GaSubtle is a tool based on Java that uses genatic algorithm to generate subtle higher order mutants. </p>
+                        </div>
+                        <!-- End of Promo Title -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Box -->
+                                <div class="box box-small-icon-alt">
+                                    <i class="pe-7s-plugin box-icon"></i>
+                                    <h4 class="box-title">Easy integration</h4>
+                                    <p class="box-description">You can easilly integerate your application with GaSubtle's easy to use API.</p>
+                                </div>
+                                <!-- End of Box -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Box -->
+                                <div class="box box-small-icon-alt">
+                                    <i class="pe-7s-key box-icon"></i>
+                                    <h4 class="box-title">Open source</h4>
+                                    <p class="box-description">GaSubtle is open source! Check the source code on <a href="https://github.com/AbdullahAsendar/GaSubtle" target="_blank">GitHub</a>.</p>
+                                </div>
+                                <!-- End of Box -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Box -->
+                                <div class="box box-small-icon-alt">
+                                    <i class="pe-7s-tools box-icon"></i>
+                                    <h4 class="box-title">Customizable</h4>
+                                    <p class="box-description">With layered architecture, you can easilly customize GaSubtle to meet your needs.</p>
+                                </div>
+                                <!-- End of Box -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Box -->
+                                <div class="box box-small-icon-alt">
+                                    <i class="pe-7s-note box-icon"></i>
+                                    <h4 class="box-title">Documented</h4>
+                                    <p class="box-description">With highly documented code, you can easilly reuse GaSubtle's components.</p>
+                                </div>
+                                <!-- End of Box -->
+                            </div>
+                        </div>
+                        <!-- Promo Title -->
+                        <div class="promo-title-wrapper ">
+                            <h3 class="promo-title"> How to use the API? </h3>
+                            <p class="promo-description"> You can use the API to integerate GaSubtle with your application. </p>
+                        </div>
+                        <!-- End of Promo Title -->
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="code-highlight ">
+                                    <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-javascript js-code">
+GeneticAlgorithm
+	.builder()
+	.mutationPercentage(10) \\ the mutation percentage
+	.maxOrder(5) \\ max order of the HOMs not to be exceeded
+	.runRepeat(1) \\ how many time to run the algorithm [for benchmarking]
+        \\ stopping conditions, at least one should be provided
+	.requiredSubtleHoms(1000) \\ stopping condition: minimum subtle HOMs needed
+	.maxHoms(1500) \\ stopping condition: maximum HOMs to generate
+	.maxGeneration(300) \\ stopping condition: maximum generation to reach
+	.timeout(1000) \\ stopping condition: timeout in seconds
+	.originalFile("/some/.java/file") \\ path to the original file
+	.testCasesPath("/some/.class/test/path") \\ path to test cases
+	.resultPath("/some/path") \\ path to store the results in
+	.mutantsPath("/some/path") \\ path to store the mutants in
+	.evaluation(new EvaluationDefaultImpl())
+	.evaluation(new EvaluationDefaultImpl())
+	.crossover(new CrossoverDefaultImpl())
+	.mutation(new MutationDefaultImpl())
+	.selection(selection)
+	.messageListener(new MessageListener() {
+
+		@Override
+		public void info(String value) {
+                        System.out.println("Info message from the GA is: "+ value);
+		}
+
+		@Override
+		public void error(String value) {
+		    System.out.println("There was an error:" + value);
+		}
+
+		@Override
+		public void debug(String value) {
+		    System.out.println("Debugging: "+ value);
+		}
+	})
+	.geneticAlgorithmListener((int generation, int populationSize, int liveMutants, int subtleMutants)
+			-> LOG.info(String.format("Generation [%s] Population [%s] Live Mutants [%s] Subtle Mutants [%s]",
+					generation, populationSize, liveMutants, subtleMutants)))
+			.build()
+	.run();
+</code></pre></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Promo Title -->
+                        <div class="promo-title-wrapper ">
+                            <h3 class="promo-title" data-icon="&#xe642"> See GaSubtle in action </h3>
+                            <p class="promo-description"> Whether you are a developer or a researcher, you can use Gasubtle. </p>
+                        </div>
+                        <!-- End of Promo Title -->
+                        <!-- Featured Boxes -->
+                        <ul class="featured-boxes">
+                            <li class="featured-boxes-item">
+                                <i class="fa fa-book featured-boxes-item-icon"></i>
+                                <h4 class="featured-boxes-item-title">Guide</h4>
+                                <p class="featured-boxes-item-description">Everything you want to know.</p>
+                                <a href="documentation.html" class="featured-boxes-item-button button blue stroke rounded"> Start </a>
+                            </li>
+                            <li class="featured-boxes-item">
+                                <i class="fab fa-java featured-boxes-item-icon"></i>
+                                <h4 class="featured-boxes-item-title">Java Docs</h4>
+                                <p class="featured-boxes-item-description">Check the docs.</p>
+                                <a href="javadoc/index.html" class="featured-boxes-item-button button blue stroke rounded"> Learn more </a>
+                            </li>
+                            <li class="featured-boxes-item">
+                                <i class="fa fa-certificate featured-boxes-item-icon"></i>
+                                <h4 class="featured-boxes-item-title">License</h4>
+                                <p class="featured-boxes-item-description">GaSubtle License.</p>
+                                <a href="license.html" class="featured-boxes-item-button button blue stroke rounded"> Check License </a>
+                            </li>
+                        </ul>
+                        <!-- End of Featured Boxes -->
+                    </div>
+                </div>
+            </div>
+            <!-- Call to Action -->
+            <div class="call-to-action helper mt60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="call-to-action-title"> Got a minute? Message us </h3>
+                            <p class="call-to-action-description"> If you have any suggestions do not hesitate to email us on <a href="mailto:abdullah.asendarz@gmail.com">abdullah.asendarz@gmail.com</a>. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Call to Action -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Promo Title -->
+                        <div class="promo-title-wrapper promo-title-no-icon">
+                            <h3 class="promo-title" data-icon="&#xe6af"> Original Idea </h3>
+                            <p class="promo-description"> GaSubtle is originally a thesis project inspired by Dr. Fadi Al Widyan from the Hashemite University in Jordan </p>
+                        </div>
+                        <!-- End of Promo Title -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="js-footer-is-fixed">
+            <!-- Footer Extended -->
+            <div class="footer-extended">
+                <div class="container">
+
+                </div>
+            </div>
+            <!-- End of Footer Extended -->
+            <!-- Footer Default -->
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="footer-logo-wrapper">
+                                <!-- Logo Image -->
+                                <a href="index.html" class="logo-image ">
+                                    <img src="img/logos/logo.png" alt="logo">
+                                </a>
+                                <!-- End of Logo Image -->
+                                <!-- Slogan -->
+                                <p class="slogan"> GaSubtle
+                                    <br>Generate
+                                    <br>Mutants </p>
+                                <!-- End of Slogan -->
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="footer-wrapper">
+                                <!-- Scroll top -->
+                                <span class="scroll-top js-scroll-top">
+									<i class="fa fa-angle-up"></i>
+								</span>
+                                <!-- End of Scroll top -->
+
+                                <!-- Footer Menu -->
+                                <ul class="footer-menu helper right">
+                                    <li>
+                                        <a href="https://www.facebook.com/abd.alexander" target="_blank"> Facebook </a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:abdullah.asendarz@gmail.com" target="_blank"> Gmail </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/in/abdullah-al-shishani-0b349aaa/" target="_blank"> LinkedIn </a>
+                                    </li>
+                                </ul>
+                                <!-- End of Footer Menu -->
+
+                                <!-- Copyright -->
+                                <p class="copyright helper right">
+                                    GaSubtle, all rights reserved. 2018 &copy; </p>
+                                <!-- End of Copyright -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Footer Default -->
+        </footer>
+        <!-- End of Footer -->
     </div>
-    <!--//page-wrapper-->
-
-    <footer class="footer text-center">
-
-    </footer>
-    <!--//footer-->
-
-
-    <!-- Main Javascript -->
-    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
-
+    <script src="js/all.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>
