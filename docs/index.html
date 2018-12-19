@@ -78,11 +78,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="page-info helper center">
-                                                <h1 class="page-title-white">Meet GaSubtle</h1>
-                                                <h2 class="page-description-white">Higher Order Mutation using Genetic Algoeithm</h2>
+                                                <h1 class="page-title-white">Meet <span class="title-ga-subtle">GaSubtle</span></h1>
+                                                <h2 class="page-description-white">Higher Order Mutation using Genetic Algorithm</h2>
                                             </div>
-                                            <div class="rotator-text"> It is
-                                                <span class="js-rotator">easy to use, cross platfom, fast, well documented, open source</span> </div>
+                                            <div class="rotator-text" > It is
+                                                <span class="js-rotator">easy to use, cross platform, fast, well documented, open source</span> </div>
                                         </div>
                                     </div>
                                 </div>
@@ -111,8 +111,8 @@
                     <div class="col-md-12">
                         <!-- Promo Title -->
                         <div class="promo-title-wrapper helper pt60">
-                            <h3 class="promo-title"> What is GaSubtle? </h3>
-                            <p class="promo-description"> GaSubtle is a tool based on Java that uses genatic algorithm to generate subtle higher order mutants. </p>
+                            <h3 class="promo-title"> What is <span class="title-ga-subtle">GaSubtle</span>? </h3>
+                            <p class="promo-description"> GaSubtle is a tool based on Java that uses genetic algorithm to generate subtle higher order mutants. </p>
                         </div>
                         <!-- End of Promo Title -->
                         <div class="row">
@@ -121,7 +121,7 @@
                                 <div class="box box-small-icon-alt">
                                     <i class="pe-7s-plugin box-icon"></i>
                                     <h4 class="box-title">Easy integration</h4>
-                                    <p class="box-description">You can easilly integerate your application with GaSubtle's easy to use API.</p>
+                                    <p class="box-description">You can easily integerate your application with GaSubtle's easy to use API.</p>
                                 </div>
                                 <!-- End of Box -->
                             </div>
@@ -141,7 +141,7 @@
                                 <div class="box box-small-icon-alt">
                                     <i class="pe-7s-tools box-icon"></i>
                                     <h4 class="box-title">Customizable</h4>
-                                    <p class="box-description">With layered architecture, you can easilly customize GaSubtle to meet your needs.</p>
+                                    <p class="box-description">With layered architecture, you can easily customize GaSubtle to meet your needs.</p>
                                 </div>
                                 <!-- End of Box -->
                             </div>
@@ -150,7 +150,7 @@
                                 <div class="box box-small-icon-alt">
                                     <i class="pe-7s-note box-icon"></i>
                                     <h4 class="box-title">Documented</h4>
-                                    <p class="box-description">With highly documented code, you can easilly reuse GaSubtle's components.</p>
+                                    <p class="box-description">With highly documented code, you can easily reuse GaSubtle's components.</p>
                                 </div>
                                 <!-- End of Box -->
                             </div>
@@ -158,7 +158,7 @@
                         <!-- Promo Title -->
                         <div class="promo-title-wrapper ">
                             <h3 class="promo-title"> How to use the API? </h3>
-                            <p class="promo-description"> You can use the API to integerate GaSubtle with your application. </p>
+                            <p class="promo-description"> You can use the API to integrate GaSubtle with your application. </p>
                         </div>
                         <!-- End of Promo Title -->
                         <div class="row">
@@ -181,10 +181,9 @@ GeneticAlgorithm
 	.resultPath("/some/path") \\ path to store the results in
 	.mutantsPath("/some/path") \\ path to store the mutants in
 	.evaluation(new EvaluationDefaultImpl())
-	.evaluation(new EvaluationDefaultImpl())
 	.crossover(new CrossoverDefaultImpl())
 	.mutation(new MutationDefaultImpl())
-	.selection(selection)
+	.selection(new TournamentSelection())
 	.messageListener(new MessageListener() {
 
 		@Override
@@ -219,7 +218,7 @@ GeneticAlgorithm
                     <div class="col-md-12">
                         <!-- Promo Title -->
                         <div class="promo-title-wrapper ">
-                            <h3 class="promo-title" data-icon="&#xe642"> See GaSubtle in action </h3>
+                            <h3 class="promo-title" data-icon="&#xe642"> See <span class="title-ga-subtle">GaSubtle</span> in action </h3>
                             <p class="promo-description"> Whether you are a developer or a researcher, you can use Gasubtle. </p>
                         </div>
                         <!-- End of Promo Title -->

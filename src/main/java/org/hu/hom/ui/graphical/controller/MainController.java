@@ -17,7 +17,9 @@
  */
 package org.hu.hom.ui.graphical.controller;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,7 +55,7 @@ public class MainController implements Initializable {
 
 	private @FXML ComboBox<Integer> cmbTimeout, cmbMaxGeneration, cmbMaxNumHoms, cmbMaxNumSubtleHoms, cmbRepeat, cmbPercentage;
 	
-	private @FXML Label lblTermination;
+	private @FXML Label lblTermination, lblWebsiteUrl;
 	
 	private @Autowired FileGenerator fileGenerator;
 	
@@ -116,8 +118,9 @@ public class MainController implements Initializable {
 			cmbPercentage.getSelectionModel().select(Integer.valueOf(5));
 		}
 		
-		cmbSelctionStrategy.getItems().addAll(Selection.values());
+		cmbSelctionStrategy.getItems().addAll(Selection.values());		
 		
+		lblWebsiteUrl.setOnMouseClicked(e-> openBrowser(lblWebsiteUrl.getText()));
 		
 	}
 	
@@ -165,6 +168,20 @@ public class MainController implements Initializable {
 	private boolean notSelected(ComboBox<?> cmb) {
 		return cmb.getSelectionModel().getSelectedItem() == null;
 	}
+	
+	public static void openBrowser(String url) {
 
+		new Thread(() -> {
+
+			try {
+
+				Desktop.getDesktop().browse(new URI(url));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}).start();
+
+	}
 
 }

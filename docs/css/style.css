@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400&subset=latin,cyrillic-ext,cyrillic,latin-ext);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Megrim);
 
 html {
   font-family: sans-serif;
@@ -10183,6 +10184,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 30px;
 }
 
+.title-ga-subtle{
+  font-family: Megrim;
+}
+
 .page-info-simple .page-title {
   font-weight: 300;
   color: #333333;
@@ -10227,7 +10232,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .morphext > .animated {
   display: inline-block;
-  color: #2288cc;
   z-index: 4;
   position: relative;
 }
@@ -16414,6 +16418,11 @@ input.changelog-input {
 .one-page-logo .logo-image img {
   width: 170px;
 }
+
+.text-logo img{
+  vertical-align: middle;
+  width: 100%;
+}
 .one-page-meta {
   padding: 15px 0;
   border-top: 1px solid #eaedf1;
@@ -17913,6 +17922,7 @@ input.changelog-input {
   .rotator-text {
     font-size: 2.5em;
   }
+
   .panel {
     padding: 30px;
   }

@@ -30,7 +30,7 @@
                 <!-- One Page Logo -->
                 <div class="one-page-logo">
                     <!-- Logo Image -->
-                    <a href="index.html" class="logo-image ">
+                    <a href="index.html" class="text-logo">
                         <img src="img/logos/logo-text.png" alt="logo">
                     </a>
                     <!-- End of Logo Image -->
@@ -435,6 +435,24 @@
                                 <h4 class="note-title"> Caution </h4>
                                 <p class="note-description"> Closing the application while the tool is running will stop the algorithm and discard all the results.</p>
                             </div>
+                            <div class="note blue ">
+                                <h4 class="note-title"> Important Note </h4>
+                                <p class="note-description"> GaSubtle can only mutate one class at a time. And the provided class should be in the default package, meaning that the provided java file should NOT start with <span class="mark fill grey">package foo.boo.some.package;</span> </p>
+
+                                <h4 class="category-description">Invalid class for GaSubtle:</h4>
+
+                                <div class="code-highlight"><span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">package foo.my.package;
+
+public class SomeClazz  {
+    // a random class
+}</code></pre></div>
+
+                                <h4 class="category-description">Valid class for GaSubtle:</h4>
+
+                                <div class="code-highlight"><span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">public class SomeClazz  {
+    // a random class
+}</code></pre></div>
+                            </div>
 
                             <!-- Category Info -->
                             <div class="category-info " id="development">
@@ -445,7 +463,7 @@
 									</a>
 									<!-- End of Fragment Identifier -->
 								</h3>
-                                <p class="category-content"> We tried to make GaSubtle as portable as possible, so using the API can be enough for you to implement your own logic. However, you still can do changes in the core. In this section the technical details will be explained. So if you are not a developer or not familliar with Java you may not be interested in this section. </p>
+                                <p class="category-content"> We tried to make GaSubtle as portable as possible, so using the API can be enough for you to implement your own logic. However, you still can do changes in the core. In this section the technical details will be explained. So if you are not a developer or not familiar with Java you may not be interested in this section. </p>
                             </div>
 
                             <!-- Category Info -->
@@ -524,10 +542,9 @@ GeneticAlgorithm
 	.resultPath("/some/path") \\ path to store the results in
 	.mutantsPath("/some/path") \\ path to store the mutants in
 	.evaluation(new EvaluationDefaultImpl())
-	.evaluation(new EvaluationDefaultImpl())
 	.crossover(new CrossoverDefaultImpl())
 	.mutation(new MutationDefaultImpl())
-	.selection(selection)
+	.selection(new TournamentSelection())
 	.messageListener(new MessageListener() {
 
 		@Override
@@ -551,6 +568,142 @@ GeneticAlgorithm
 			.build()
 	.run();
 </code></pre></div>
+
+
+                            <p class="category-content">The GeneticAlgorithm has four main operations, which are Selection, Crossover, Mutation and Evaluation. All these are defined as Interfaces so you can implement your own logic. However, there are default implementations for these interfaces in package <span class="mark fill grey">org.hu.hom.api.algorithm.object.impl</span> </p>
+
+
+                            <h4 class="category-description">Selection</h4>
+
+                            <p class="category-content">At each generation a set of individuals out of the population should be selected in order to do mutation and crossover on these individuals. The selection process is based on the fitness of the individuals, where fitter solutions are more likely to be selected. Some selection strategies measure the fitness of each single one of the individuals and selects the top solutions. Other strategies measure only a sample of the population as the fitness function can be very time-consuming.</p>
+
+                            <p class="category-content">Any selection strategy should implement <span class="mark fill grey">org.hu.hom.api.algorithm.object.SelectionStrategy</span> so it can be passed to the GeneticAlgorithm. There are out of the box selection strategies implemented by GaSubtle, such as: Truncation, Random, Roulette wheel, Stochastic universal sampling and Tournament. All these selection strategies are located in the package <span class="mark fill grey">org.hu.hom.api.algorithm.object.impl.selection</span></p>
+
+                            <p class="category-content">To create a new selection strategy create a new class that implements the <span class="mark fill grey">org.hu.hom.api.algorithm.object.SelectionStrategy</span> interface then pass the created class to the GeneticAlgorithm via the method: <span> .selection(SelectionStrategy)</span>. Bellow is an example of a custom selection strategy:</p>
+
+                            <div class="code-highlight ">
+                                <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-javascript js-code">public class MySelectionStrategy implements SelectionStrategy&lt;HigherOrderMutant&gt; {
+
+    @Override
+    public List&lt;HigherOrderMutant&gt; select(Population&lt;HigherOrderMutant&gt; population, int selectionSize) {
+
+        List&lt;HigherOrderMutant&gt; selectedMutants = Lists.newArrayList();
+        List&lt;HigherOrderMutant&gt; mutants = Lists.newArrayList(population.getMutants());
+
+        // implement your logic here and fill the selectedMutants list
+        selectedMutants.addAll(mutants.subList(0, selectionSize));
+        
+        return selectedMutants;
+    }
+
+}
+
+</code></pre></div>
+
+
+
+                            <h4 class="category-description">Crossover</h4>
+
+                            <p>Crossover is done between two selected parents that are combined to create new two offspring. It is typically done by selecting a crossover point and swapping the two chromosomes's genes. This generates new two chromosomes, each carrying some genetic information from both parents.</p>
+
+                            <p class="category-content">Crossover should implement <span class="mark fill grey">org.hu.hom.api.algorithm.object.Crossover</span> so it can be passed to the GeneticAlgorithm. There is a default implementation of crossover in GaSubtle which is <span class="mark fill grey">org.hu.hom.api.algorithm.object.impl.CrossoverDefaultImpl</span>
+
+                             <p class="category-content">To create a new crossover create a new class that implements the <span class="mark fill grey">org.hu.hom.api.algorithm.object.Crossover</span> interface then pass the created class to the GeneticAlgorithm via the method: <span> .crossover(Crossover)</span>. Bellow is an example of a custom crossover:</p>
+
+                             <div class="code-highlight ">
+<span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-javascript js-code">public class MyCrossover implements Crossover&lt;HigherOrderMutant&gt; {
+
+    @Override
+    public List&lt;HigherOrderMutant&gt; crossover(HigherOrderMutant firstMutant, HigherOrderMutant secondMutant) {
+        HigherOrderMutant newMutant_1 = firstMutant.copy();
+        HigherOrderMutant newMutant_2 = secondMutant.copy();
+
+        // do your crossover here
+        crossover(newMutant_1, newMutant_2);
+        
+        return Lists.newArrayList(newMutant_1, newMutant_2);
+    }
+
+    private void crossover(HigherOrderMutant firstMutant, HigherOrderMutant secondMutant){
+        // crossover
+    }
+
+}
+</code></pre></div>
+
+
+
+
+                            <h4 class="category-description">Mutation</h4>
+
+                            <p>Mutation is done to the selected set of individuals by adding or removing a gene. The decision of adding or removing a gene is made randomly. However, if the mutant under mutation is second order then the decision will be to add, that is to make sure that the mutation process will not output a FOM.</p>
+
+                            <p class="category-content">Mutation should implement <span class="mark fill grey">org.hu.hom.api.algorithm.object.Mutation</span> so it can be passed to the GeneticAlgorithm. There is a default implementation of mtation in GaSubtle which is <span class="mark fill grey">org.hu.hom.api.algorithm.object.impl.MutationDefaultImpl</span>
+
+                            <p class="category-content">To create a new mutation create a new class that implements the <span class="mark fill grey">org.hu.hom.api.algorithm.object.Mutation</span> interface then pass the created class to the GeneticAlgorithm via the method: <span> .mutation(Mutation)</span>. Bellow is an example of a custom mutation:</p>
+
+
+                            <div class="code-highlight ">
+<span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-javascript js-code">public class MutationDefaultImpl implements Mutation&lt;HigherOrderMutant&gt; {
+
+    private static final Random RANDOM = new Random();
+
+    @Override
+    public List&lt;HigherOrderMutant&gt; mutate(List&lt;HigherOrderMutant&gt; mutants) {
+        List&lt;HigherOrderMutant&gt; newMutants = Lists.newArrayList();
+
+        // do mutation and fill newMutants list
+
+        return newMutants;
+    }
+
+    private HigherOrderMutant removeAMutation(HigherOrderMutant mutant) {
+        int index = RANDOM.nextInt(mutant.getFirstOrderMutants().size());
+
+        List&lt;FirstOrderMutant&gt; mutatns = Lists.newArrayList(mutant.getFirstOrderMutants());
+
+        mutant.removeFirstOrderMutant(mutatns.get(index));
+
+        return mutant;
+    }
+
+
+    private HigherOrderMutant applyRandomMutation(HigherOrderMutant mutant) {
+        mutant.addFirstOrderMutant(MutationModel.getRandomMutant(mutant));
+        return mutant;
+    }
+
+}
+</code></pre></div>
+
+                            <h4 class="category-description">Evaluation</h4>
+
+                            <p>Evaluation is used in GaSubtle to provide the Fitness Function, which is a type of objective function used to evaluate a given set of candidate solutions to assign a fitness value for each candidate.</p>
+
+                            <p class="category-content">Evaluation should implement <span class="mark fill grey">org.hu.hom.api.algorithm.object.Evaluation</span> so it can be passed to the GeneticAlgorithm. There is a default implementation of evaluation in GaSubtle which is <span class="mark fill grey">org.hu.hom.api.algorithm.object.impl.EvaluationDefaultImpl</span>
+
+                            <p class="category-content">To create a new evaluation create a new class that implements the <span class="mark fill grey">org.hu.hom.api.algorithm.object.Evaluation</span> interface then pass the created class to the GeneticAlgorithm via the method: <span> .evaluation(Evaluation)</span>. Bellow is an example of a custom evaluation:</p>
+
+                            <div class="code-highlight ">
+<span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-javascript js-code">public class EvaluationDefaultImpl implements Evaluation&lt;HigherOrderMutant&gt; {
+    
+    @Override
+    public List&lt;HigherOrderMutant&gt; evaluate(List&lt;HigherOrderMutant&gt; mutants) {
+        mutants.stream().forEach(this::setFitness);
+        return mutants;
+    }
+
+    private void setFitness(HigherOrderMutant mutant) {
+        mutant.setFitness(getFitnessValue(mutant);
+    }
+
+    private double getFitnessValue(HigherOrderMutant mutant) {
+        int fitness = 0;
+        // implement your logic here 
+        return fitness;
+    }
+}</code></pre></div>
+
                             </div>
                             <!-- End of Caregory Info -->
 
@@ -586,8 +739,6 @@ GeneticAlgorithm
         <!-- End of One Page Content -->
     </div>
     <script src="js/all.js"></script>
-    <script src="js/custom.js"></script>
-
 </body>
 
 </html>
