@@ -168,18 +168,18 @@
                                     <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-javascript js-code">
 GeneticAlgorithm
 	.builder()
-	.mutationPercentage(10) \\ the mutation percentage
-	.maxOrder(5) \\ max order of the HOMs not to be exceeded
-	.runRepeat(1) \\ how many time to run the algorithm [for benchmarking]
-        \\ stopping conditions, at least one should be provided
-	.requiredSubtleHoms(1000) \\ stopping condition: minimum subtle HOMs needed
-	.maxHoms(1500) \\ stopping condition: maximum HOMs to generate
-	.maxGeneration(300) \\ stopping condition: maximum generation to reach
-	.timeout(1000) \\ stopping condition: timeout in seconds
-	.originalFile("/some/.java/file") \\ path to the original file
-	.testCasesPath("/some/.class/test/path") \\ path to test cases
-	.resultPath("/some/path") \\ path to store the results in
-	.mutantsPath("/some/path") \\ path to store the mutants in
+	.mutationPercentage(10) // the mutation percentage
+	.maxOrder(5) // max order of the HOMs not to be exceeded
+	.runRepeat(1) // how many time to run the algorithm [for benchmarking]
+        // stopping conditions, at least one should be provided
+	.requiredSubtleHoms(1000) // stopping condition: minimum subtle HOMs needed
+	.maxHoms(1500) // stopping condition: maximum HOMs to generate
+	.maxGeneration(300) // stopping condition: maximum generation to reach
+	.timeout(1000) // stopping condition: timeout in seconds
+	.originalFile("/some/.java/file") // path to the original file
+	.testCasesPath("/some/.class/test/path") // path to test cases
+	.resultPath("/some/path") // path to store the results in
+	.mutantsPath("/some/path") // path to store the mutants in
 	.evaluation(new EvaluationDefaultImpl())
 	.crossover(new CrossoverDefaultImpl())
 	.mutation(new MutationDefaultImpl())

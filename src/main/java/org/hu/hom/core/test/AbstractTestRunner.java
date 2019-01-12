@@ -18,6 +18,7 @@
 package org.hu.hom.core.test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -136,9 +137,13 @@ public abstract class AbstractTestRunner {
 	 * @return set of failed test cases
 	 * @throws Exception if the execution is failed for any reason
 	 */
-	private List<String> excute(AbstractMutant mutant, String originalFile, String testCasesPath) throws Exception {
+	private List<String> excute(AbstractMutant mutant, String originalFile, String testCasesPath) {
 
-		org.hu.hom.core.utils.Compiler.compile(FileType.noExtension(originalFile), mutant.getCode(), Constants.TMP);
+		try {
+			org.hu.hom.core.utils.Compiler.compile(FileType.noExtension(originalFile), mutant.getCode(), Constants.TMP);
+		} catch (IOException e) {
+			return Lists.newArrayList("Unable to compile");
+		}
 		
 		FileUtils.copyDirectory(testCasesPath, Constants.TMP);
 
@@ -150,7 +155,13 @@ public abstract class AbstractTestRunner {
 		
 		List<String> errors = Lists.newArrayList();
 
-		String theString = CmdUtils.excute(command, 5, TimeUnit.SECONDS);
+		String theString = null;
+		
+		try {
+			theString = CmdUtils.excute(command, 5, TimeUnit.SECONDS);
+		} catch (Exception e) {
+			return Lists.newArrayList("Timeout");
+		}
 
 		List<String> lines = new ArrayList<>(Arrays.asList(theString.split("\n")));
 

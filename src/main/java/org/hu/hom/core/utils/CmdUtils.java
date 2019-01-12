@@ -23,6 +23,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hu.hom.core.exception.HomException;
 
 /**
  * 
@@ -35,13 +38,14 @@ import org.apache.commons.io.IOUtils;
 public class CmdUtils {
 
 	private static final ExecutorService executor = Executors.newSingleThreadExecutor();
-
+	private static final Log LOG = LogFactory.getLog(CmdUtils.class);
+	
 	/**
 	 * @param command to be executed
 	 * @param timeout of the command
 	 * @param timeUnit of the timeout
 	 * @return the string output of the execution
-	 * @throws Exception in case anything went down
+	 * @throws Exception in on timeout
 	 */
 	public static String excute(String command, int timeout, TimeUnit timeUnit) throws Exception {
 
@@ -52,6 +56,8 @@ public class CmdUtils {
 				if (!p.waitFor(timeout, timeUnit)) {
 					// timeout - kill the process.
 					p.destroyForcibly();
+					LOG.error("destroying process with cause timeout");
+					HomException.throwException("timeout");
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -59,6 +65,8 @@ public class CmdUtils {
 
 		});
 
+//		p.exitValue();
+		
 		String theString = IOUtils.toString(p.getInputStream(), Charset.defaultCharset());
 
 		return theString;
